@@ -1,3 +1,78 @@
+$color-text: #444;
+
 html {
   font-family: Arial, Helvetica, sans-serif;
+  color: $color-text;
 }
+
+.d-f {
+  display: flex;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+$grid-cols: 10;
+
+@for $i from 1 through $grid-cols {
+  $col-width: 100 / $grid-cols;
+
+  .w-#{$i * $col-width} {
+    width: $i * $col-width + 0%;
+  }
+}
+
+$directions: (
+  (top, t),
+  (right, r),
+  (bottom, b),
+  (left, l)
+);
+
+@for $i from 0 through 5 {
+  .p-#{$i} {
+    padding: $i * 1rem;
+  }
+
+  @for $j from 1 through length($directions) {
+    $d: nth($directions, $j);
+
+    .p#{nth($d, 2)}-#{$i} {
+      padding-#{nth($d, 1)}: $i * 1rem;
+    }
+
+    .m#{nth($d, 2)}-#{$i} {
+      margin-#{nth($d, 1)}: $i * 1rem;
+    }
+  }
+}
+
+.timeline {
+  border-left: 1px solid $color-text;
+}
+
+.timeline-entry {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: calc(-2.5rem - 1px);
+    top: 1px;
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid $color-text;
+    background: white;
+    border-radius: 50%;
+  }
+}
+
