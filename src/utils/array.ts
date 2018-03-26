@@ -1,4 +1,4 @@
-export const findBy = <T>(propName: keyof T) => <V extends T>(array: V[]) => (value: any) => {
+export const findBy = <T>(propName: keyof T) => <V extends T>(array: V[]) => <U extends keyof T>(value: V[U]) => {
   return array.find(element => element[propName] === value)
 }
 
