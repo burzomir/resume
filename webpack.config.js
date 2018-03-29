@@ -29,7 +29,21 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.scss/,
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: true,
+                importLoaders: 1
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           use: [
             {

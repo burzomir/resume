@@ -5,6 +5,12 @@ html {
   color: $color-text;
 }
 
+@media print {
+  html {
+    font-size: 14px;
+  }
+}
+
 .d-f {
   display: flex;
 }
@@ -76,3 +82,12 @@ $directions: (
   }
 }
 
+.rating {
+  margin-left: -0.25rem;
+
+  &__item {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    font-size: 0.75rem;
+  }
+}

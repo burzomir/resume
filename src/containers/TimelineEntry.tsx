@@ -9,12 +9,21 @@ interface TimelineEntryContainerProps {
 
 const TimelineEntryContainer: React.StatelessComponent<TimelineEntryContainerProps> = (props) => {
   const { id } = props
-  const { name } = findById(data.entries)(id)
+  const { name, started, ended, achievements } = findById(data.entries)(id)
   return (
     <TimelineEntry
-      name={name}
-      started={new Date()}
-    />
+      {...{
+        name,
+        started,
+        ended
+      }}
+    >
+      <ul>
+        {
+          achievements.map(text => <li key={text}>{text}</li>)
+        }
+      </ul>
+    </TimelineEntry>
   )
 }
 

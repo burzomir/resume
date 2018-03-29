@@ -1,6 +1,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+
+import '../assets/css/Glyphter.css'
+
 import Timeline from './containers/Timeline'
+import SkillSection from './containers/SkillSection'
 
 const App: React.StatelessComponent = () => {
   return (
@@ -10,12 +14,11 @@ const App: React.StatelessComponent = () => {
       </div>
       <div className='d-f pl-2'>
         <div className='w-30'>
-          <h1>Info</h1>
-          <h1>Skills</h1>
-          <h1>Languages</h1>
+          <SkillSection id={1}/>
+          <SkillSection id={2}/>
         </div>
-        <div className='w-70 pr-2 d-f'>
-          <Timeline/>
+        <div className='w-70 pr-2'>
+          <Timeline />
         </div>
       </div>
     </div>

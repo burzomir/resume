@@ -6,3 +6,11 @@ interface WithId {
   id: number
 }
 export const findById = findBy<WithId>('id')
+
+export const createRange = (start: number, end: number): number[] => {
+  if (start < end) {
+    return [start, ...createRange(start + 1, end)]
+  } else {
+    return []
+  }
+}
