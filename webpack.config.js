@@ -1,8 +1,41 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const UglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
+
+const isProd = process.env.NODE_ENV === 'production'
+
+const plugins = [
+  new CleanWebpackPlugin(['dist']),
+
+  new HtmlWebpackPlugin({
+    title: 'Burzomir Resume',
+    favicon: './assets/favicon.ico'
+  }),
+
+  new ExtractTextPlugin('style.[contenthash].css'),
+
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendors',
+    minChunks: function (module) {
+      return isVendorModule(module)
+    }
+  }),
+
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'manifest'
+  })
+]
+
+const productionPlugins = [
+  new UglifyJSWebpackPlugin(),
+
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('production')
+  })
+]
 
 module.exports = {
   entry: './src/index.ts',
@@ -75,27 +108,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-
-    new HtmlWebpackPlugin({
-      title: 'Burzomir Resume',
-      favicon: './assets/favicon.ico'
-    }),
-
-    new ExtractTextPlugin('style.[contenthash].css'),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      minChunks: function (module) {
-        return isVendorModule(module)
-      }
-    }),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest'
-    })
-  ]
+  plugins: isProd ? plugins.concat(productionPlugins) : plugins
 }
 
 function isVendorModule (module) {
