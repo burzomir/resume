@@ -117,3 +117,20 @@ $directions: (
 .avatar {
   border-radius: 50%;
 }
+
+.page {
+  width: 100%;
+  position: relative;
+
+  &--a4 {
+    padding-top: 141.42%;
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}

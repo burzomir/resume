@@ -91,7 +91,7 @@ export const data = {
     {
       id: 1,
       name: 'Skills',
-      skills: [1, 3, 4, 7, 8, 9, 11, 12]
+      skills: [1, 3, 4, 7, 8, 9, 11]
     },
     {
       id: 2,

@@ -7,24 +7,27 @@ import Timeline from './containers/Timeline'
 import Avatar from './components/Avatar'
 import LanguageSection from './containers/LanguageSection'
 import TechnicalSkillSection from './containers/TechnicalSkillSection'
+import ContactSection from './containers/ContactSection'
+import Page from './components/Page'
 
 const App: React.StatelessComponent = () => {
   return (
-    <div className='d-f p-2'>
-      <div className='w-30 pr-2'>
-        <div className='text-center'>
-          <Avatar src={require('../assets/brzmr.png')} className='w-80' />
-          <h1>Michał Kłobukowski</h1>
+    <Page format='a4' style={{ border: '1px solid black' }} className='d-f'>
+      <div className='d-f p-2'>
+        <div className='w-30 pr-2'>
+          <div className='text-center mb-2'>
+            <Avatar src={require('../assets/brzmr.png')} className='w-80' />
+            <h1>Michał Kłobukowski</h1>
+          </div>
+          <ContactSection />
+          <TechnicalSkillSection />
+          <LanguageSection />
         </div>
-        <h2>Contact</h2>
-        <p>LinkedIn: michalklobukowski</p>
-        <TechnicalSkillSection />
-        <LanguageSection />
+        <div className='w-70 d-f'>
+          <Timeline />
+        </div>
       </div>
-      <div className='w-70 d-f'>
-        <Timeline />
-      </div>
-    </div>
+    </Page>
   )
 }
 

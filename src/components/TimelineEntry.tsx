@@ -22,13 +22,12 @@ const TimelineEntry: React.StatelessComponent<TimelineEntryProps> = (props) => {
 
   return (
     <div className='timeline-entry'>
-      <h3 className='d-f jc-sb'>
-        <span>
+      <h3>
+        <div className='d-f jc-sb'>
           <span>{name}</span>
-          &nbsp;-&nbsp;
-          <span>{companyName}</span>
-        </span>
-        <span>{`${_started} - ${_ended}`}</span>
+          <small>{`${_started} - ${_ended}`}</small>
+        </div>
+        <small>{companyName}</small>
       </h3>
       {children}
     </div>

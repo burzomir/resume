@@ -12,7 +12,7 @@ const SkillSection: React.StatelessComponent<SkillSectionProps> = (props) => {
 
   return (
     <div className='skill-section mb-3'>
-      <h2>{name}</h2>
+      <h2 className='mb-1'>{name}</h2>
       {children}
     </div>
   )
