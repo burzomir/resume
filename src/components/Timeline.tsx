@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-const Timeline: React.StatelessComponent = ({ children }) => {
+const Timeline: React.StatelessComponent<React.HTMLAttributes<HTMLDivElement>> = ({ className, ...rest }) => {
   return (
-    <div className='timeline pl-2'>
-      {children}
-    </div>
+    <div className={`timeline pl-2 ${className}`} {...rest} />
   )
 }
 

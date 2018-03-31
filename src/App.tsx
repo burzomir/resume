@@ -4,22 +4,25 @@ import * as ReactDOM from 'react-dom'
 import '../assets/css/Glyphter.css'
 
 import Timeline from './containers/Timeline'
-import SkillSection from './containers/SkillSection'
+import Avatar from './components/Avatar'
+import LanguageSection from './containers/LanguageSection'
+import TechnicalSkillSection from './containers/TechnicalSkillSection'
 
 const App: React.StatelessComponent = () => {
   return (
-    <div>
-      <div className='p-2'>
-        <h1>Michał Kłobukowski</h1>
+    <div className='d-f p-2'>
+      <div className='w-30 pr-2'>
+        <div className='text-center'>
+          <Avatar src={require('../assets/brzmr.png')} className='w-80' />
+          <h1>Michał Kłobukowski</h1>
+        </div>
+        <h2>Contact</h2>
+        <p>LinkedIn: michalklobukowski</p>
+        <TechnicalSkillSection />
+        <LanguageSection />
       </div>
-      <div className='d-f pl-2'>
-        <div className='w-30'>
-          <SkillSection id={1}/>
-          <SkillSection id={2}/>
-        </div>
-        <div className='w-70 pr-2'>
-          <Timeline />
-        </div>
+      <div className='w-70 d-f'>
+        <Timeline />
       </div>
     </div>
   )

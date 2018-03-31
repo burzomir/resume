@@ -71,7 +71,6 @@ module.exports = {
       },
       {
         test: /\.(svg|gif|jpg|png|woff|woff2|ttf|eot)$/,
-        exclude: /(node_modules)/,
         loader: 'url-loader?limit=10000'
       }
     ]

@@ -13,6 +13,7 @@ html {
 
 .d-f {
   display: flex;
+  align-items: stretch;
 }
 
 .jc-sb {
@@ -62,6 +63,16 @@ $directions: (
   }
 }
 
+.m-auto {
+  margin: auto;
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+}
+
 .timeline {
   border-left: 1px solid $color-text;
 }
@@ -90,4 +101,19 @@ $directions: (
     margin-right: 0.25rem;
     font-size: 0.75rem;
   }
+}
+
+.skill-rating {
+  padding-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  &__name {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+}
+
+.avatar {
+  border-radius: 50%;
 }

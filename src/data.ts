@@ -91,7 +91,7 @@ export const data = {
     {
       id: 1,
       name: 'Skills',
-      skills: [1, 3, 4, 7, 8, 9]
+      skills: [1, 3, 4, 7, 8, 9, 11, 12]
     },
     {
       id: 2,
@@ -104,17 +104,17 @@ export const data = {
     {
       id: 1,
       name: 'JavaScript / TypeScript',
-      rating: 6
+      rating: 4
     },
     {
       id: 3,
       name: 'HTML',
-      rating: 5
+      rating: 4
     },
     {
       id: 4,
       name: 'CSS / SCSS',
-      rating: 5
+      rating: 4
     },
     {
       id: 5,
@@ -129,7 +129,7 @@ export const data = {
     {
       id: 7,
       name: 'React + Redux',
-      rating: 5
+      rating: 4
     },
     {
       id: 8,
@@ -139,7 +139,17 @@ export const data = {
     {
       id: 9,
       name: 'Webpack',
-      rating: 4
+      rating: 3
+    },
+    {
+      id: 11,
+      name: 'GIT',
+      rating: 3
+    },
+    {
+      id: 12,
+      name: 'Docker',
+      rating: 2
     }
   ]
 }
