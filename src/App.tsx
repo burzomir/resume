@@ -12,22 +12,24 @@ import Page from './components/Page'
 
 const App: React.StatelessComponent = () => {
   return (
-    <Page format='a4' style={{ border: '1px solid black' }} className='d-f'>
-      <div className='d-f p-2'>
-        <div className='w-30 pr-2'>
-          <div className='text-center mb-2'>
-            <Avatar src={require('../assets/brzmr.png')} className='w-80' />
-            <h1>Michał Kłobukowski</h1>
+    <div className='app'>
+      <Page format='a4' className='d-f'>
+        <div className='d-f p-2'>
+          <div className='w-30 pr-2'>
+            <div className='text-center mb-2'>
+              <Avatar src={require('../assets/brzmr.png')} className='w-80' />
+              <h1>Michał Kłobukowski</h1>
+            </div>
+            <ContactSection />
+            <TechnicalSkillSection />
+            <LanguageSection />
           </div>
-          <ContactSection />
-          <TechnicalSkillSection />
-          <LanguageSection />
+          <div className='w-70 d-f'>
+            <Timeline />
+          </div>
         </div>
-        <div className='w-70 d-f'>
-          <Timeline />
-        </div>
-      </div>
-    </Page>
+      </Page>
+    </div>
   )
 }
 

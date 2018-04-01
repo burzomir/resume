@@ -1,14 +1,9 @@
 $color-text: #444;
+$breakpoint: 880px;
 
 html {
   font-family: Arial, Helvetica, sans-serif;
   color: $color-text;
-}
-
-@media print {
-  html {
-    font-size: 14px;
-  }
 }
 
 .d-f {
@@ -132,5 +127,19 @@ $directions: (
     right: 0;
     bottom: 0;
     left: 0;
+  }
+}
+
+@media screen {
+  .app {
+    max-width: 800px;
+    min-width: 800px;
+    margin: auto;
+  }
+}
+
+@media print {
+  html {
+    font-size: 14px;
   }
 }

@@ -41,8 +41,7 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.join(__dirname, '/dist'),
-    publicPath: '/'
+    path: path.join(__dirname, '/dist')
   },
   devtool: 'inline-source-map',
   resolve: {
