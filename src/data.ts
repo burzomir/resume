@@ -53,8 +53,8 @@ export const data = {
     started: new Date(2016, 10),
     ended: new Date(2017, 5),
     achievements: [
-      'Created a set of tools that reduced repetitive tasks done by the team by 70%',
-      'Improved a project architecture that reduced dependencies between developers work by 80%',
+      'Created a set of tools that automated repetitive tasks done by the team',
+      'Improved a project architecture that made project modules less dependant and more reusable',
       'Introduced new technologies like ES6 and Webpack to the team',
       'Participated in project meetings with staff and clients',
       'Mentored over 4 developers',
@@ -66,6 +66,7 @@ export const data = {
     started: new Date(2015, 10),
     ended: new Date(2016, 10),
     achievements: [
+      'Designed and developed better UI controls that improved big data browsing experience',
       'Improved projects build process that reduced total client application size by 70%',
       'Developed integration service for exchanging data between SOAP and RESTful web-services',
       'Developed and maintained over 3 web applications'
