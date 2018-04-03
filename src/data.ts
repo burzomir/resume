@@ -1,6 +1,11 @@
 export const data = {
   timeline: {
-    sections: [1, 2]
+    sections: [1, 2],
+    intro: `
+      A front-end developer who cares about the results and the quality of the code.
+      Developed and maintained over 10 advanced applications based on the provided specification and design.
+      Introduced new technologies to help Bitcraft team develop their products better and faster.
+    `
   },
 
   sections: [{
@@ -37,9 +42,10 @@ export const data = {
     started: new Date(2017, 5),
     ended: new Date(2018, 3),
     achievements: [
-      'Implementation of web and mobile applications (React, React Native)',
-      'Standarization of front-end team work (code-review, automation of code quality control)',
-      'Participation in interviews'
+      'Estabilished regular code review in the front-end team',
+      'Actively participated in work standard improvement meetings',
+      'Carried out the technical part of the interview',
+      'Organized trips to the Code Europe conference and HACKYEAH hackathon'
     ]
   },{
     id: 2,
@@ -47,9 +53,12 @@ export const data = {
     started: new Date(2016, 10),
     ended: new Date(2017, 5),
     achievements: [
-      'Implementation of web applications (AngularJS)',
-      'Custom tool based on Webpack that reduced amount of repetitive tasks performed by developers on the long-term project (Webpack, Node.js)',
-      'Introducing trending technologies in new projects (Webpack, ES6)'
+      'Created a set of tools that reduced repetitive tasks done by the team by 70%',
+      'Improved a project architecture that reduced dependencies between developers work by 80%',
+      'Introduced new technologies like ES6 and Webpack to the team',
+      'Participated in project meetings with staff and clients',
+      'Mentored over 4 developers',
+      'Developed over 5 web and mobile applications'
     ]
   },{
     id: 3,
@@ -57,9 +66,9 @@ export const data = {
     started: new Date(2015, 10),
     ended: new Date(2016, 10),
     achievements: [
-      'Maintanance of existing projects (Django, Django Rest Framework, Knockout.js)',
-      'Improvements and optimization of front-end project (Knockout.js, Gulp)',
-      'Integration between SOAP and RESTful web services'
+      'Improved projects build process that reduced total client application size by 70%',
+      'Developed integration service for exchanging data between SOAP and RESTful web-services',
+      'Developed and maintained over 3 web applications'
     ]
   },{
     id: 4,
@@ -67,8 +76,8 @@ export const data = {
     started: new Date(2014, 1),
     ended: new Date(2017, 8),
     achievements: [
-      'Diament Meblarstwa furniture competition (Django, AngularJS) - Web app that helps with planning, competitors registration, voting and summarizing entire competition',
-      '3D shopping mall widget (three.js) - Web widget that allows to use 3D interactive models on shopping mall kiosks'
+      'Diament Meblarstwa furniture competition - Web app that helps with planning, competitors registration, voting and summarizing entire competition',
+      '3D shopping mall widget - Web widget that allows to use 3D interactive models on shopping mall kiosks'
     ]
   },{
     id: 5,
@@ -76,8 +85,8 @@ export const data = {
     started: new Date(2015, 1),
     ended: new Date(2016, 8),
     achievements: [
-      'Wspólna przestrzeń - wspólne sprawy - Supraśl Town interactive map application (Django, jQuery)',
-      'Crisis in mind mapping (Django, jQuery, Leaflet.js) - Collaborative photo mind-map editor for photography workshops'
+      'Wspólna przestrzeń - wspólne sprawy - Supraśl Town interactive map application',
+      'Crisis in mind mapping - Collaborative photo mind-map editor for photography workshops'
     ]
   },{
     id: 6,

@@ -12,7 +12,7 @@ const TimelineSection: React.StatelessComponent<TimelineSectionProps> = (props) 
 
   return (
     <div className='timeline-section'>
-      <h1>{name}</h1>
+      <h2>{name}</h2>
       {children}
     </div>
   )
