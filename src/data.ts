@@ -4,14 +4,13 @@ export const data = {
     intro: `
       A front-end developer who cares about the results and the quality of the code.
       Developed and maintained over 10 advanced applications based on the provided specification and design.
-      Introduced new technologies to help Bitcraft team develop their products better and faster.
     `
   },
 
   sections: [{
     id: 1,
     name: 'Experience',
-    subsections: [1, 2, 3]
+    subsections: [6, 5, 1, 2]
   }, {
     id: 2,
     name: 'Education',
@@ -34,16 +33,23 @@ export const data = {
     id: 4,
     name: 'Bialystok University of Technology',
     entries: [6]
+  }, {
+    id: 5,
+    name: 'Astek Polska',
+    entries: [7]
+  }, {
+    id: 6,
+    name: 'Roche',
+    entries: [8]
   }],
 
   entries: [{
     id: 1,
     name: 'Lead Front-end Developer',
     started: new Date(2017, 5),
-    ended: new Date(2018, 3),
+    ended: new Date(2018, 4),
     achievements: [
       'Estabilished regular code review in the front-end team',
-      'Actively participated in work standard improvement meetings',
       'Carried out the technical part of the interview',
       'Organized trips to the Code Europe conference and HACKYEAH hackathon'
     ]
@@ -54,7 +60,6 @@ export const data = {
     ended: new Date(2017, 5),
     achievements: [
       'Created a set of tools that automated repetitive tasks done by the team',
-      'Improved a project architecture that made project modules less dependant and more reusable',
       'Introduced new technologies like ES6 and Webpack to the team',
       'Participated in project meetings with staff and clients',
       'Mentored over 4 developers',
@@ -91,10 +96,23 @@ export const data = {
     ]
   },{
     id: 6,
-    name: 'Computer Science',
+    name: 'Engineer\'s degree / Computer Science',
     started: new Date(2013, 9),
-    ended: new Date(2018, 6),
+    ended: new Date(2018, 9),
     achievements: []
+  }, {
+    id: 7,
+    name: 'Front-end Developer',
+    started: new Date(2018, 5),
+    achievements: [
+      'Developed a new front-end for a big-data storage and processing cloud platform',
+      'Developed single features across different projects both on front-end and back-end side'
+    ]
+  }, {
+    id: 8,
+    name: 'IT Consultant',
+    started: new Date(2018, 5),
+    achievements: [] as string[]
   }],
 
   skillSections: [
