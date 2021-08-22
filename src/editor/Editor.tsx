@@ -9,6 +9,8 @@ import TimelineEntry from "../components/TimelineEntry";
 import TimelineSection from "../components/TimelineSection";
 import * as Data from "../types/Data";
 import { Picture } from "../types/Picture";
+import { updateEntry } from "../types/Timeline/Section";
+import { updateSection } from "../types/Timeline/Timeline";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
@@ -65,7 +67,16 @@ function Editor() {
                       <TimelineEntry
                         key={ei}
                         entry={entry}
-                        onChange={() => {}}
+                        onChange={(newEntry) => {
+                          const newSection = updateEntry(ei, newEntry, section);
+                          const newTimeline = updateSection(
+                            si,
+                            newSection,
+                            data.timeline
+                          );
+                          const newData = Data.setTimeline(newTimeline, data);
+                          setData(newData);
+                        }}
                       ></TimelineEntry>
                     ))}
                   </TimelineSection>

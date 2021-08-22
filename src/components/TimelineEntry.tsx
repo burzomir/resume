@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Entry, setName } from "../types/Timeline/Entry";
+import { Entry, setCompanyName, setName } from "../types/Timeline/Entry";
 import { useContentEditable } from "./ContentEditable";
 
 interface TimelineEntryProps {
@@ -14,8 +14,11 @@ export default function TimelineEntry(
 
   const { name, companyName, started, ended } = entry;
 
-  const formatDate = (date: Date) =>
-    `${date.toLocaleDateString("en-us", { month: "short", year: "numeric" })}`;
+  const formatDate = (date: Date | string) =>
+    `${new Date(date).toLocaleDateString("en-us", {
+      month: "short",
+      year: "numeric",
+    })}`;
   const _started = formatDate(started);
   const _ended = ended ? formatDate(ended) : "Present";
 
@@ -26,7 +29,8 @@ export default function TimelineEntry(
 
   const companyNameRef = useContentEditable({
     value: companyName,
-    onChange: (newName) => onChange(setName(newName, entry)),
+    onChange: (newCompanyName) =>
+      onChange(setCompanyName(newCompanyName, entry)),
   });
 
   return (
