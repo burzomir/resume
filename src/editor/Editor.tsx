@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { AvatarEditor } from "../components/AvatarEditor";
+import { Intro } from "../components/Intro";
 import { Name } from "../components/Name";
 import Page from "../components/Page";
 import Timeline from "../components/Timeline";
@@ -29,6 +30,11 @@ function Editor() {
     setData(newData);
   };
 
+  const setIntro = (name: string) => {
+    const newData = Data.setIntro(name, data);
+    setData(newData);
+  };
+
   return (
     <>
       <div>
@@ -49,7 +55,9 @@ function Editor() {
               </div>
             </div>
             <div className="w-70 d-f">
-              <Timeline></Timeline>
+              <Timeline>
+                <Intro value={data.intro} onChange={setIntro} />
+              </Timeline>
             </div>
           </div>
         </Page>

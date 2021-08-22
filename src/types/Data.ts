@@ -6,12 +6,14 @@ export type Data = {
   version: number;
   avatar: Picture;
   name: string;
+  intro: string;
 };
 
 export const defaultData: Data = {
   version: 1,
   avatar: defaultPicture,
   name: "",
+  intro: "",
 };
 
 export function setAvatar(picture: Picture, data: Data): Data {
@@ -23,6 +25,12 @@ export function setAvatar(picture: Picture, data: Data): Data {
 export function setName(name: string, data: Data): Data {
   const newData = { ...data };
   newData["name"] = name;
+  return newData;
+}
+
+export function setIntro(intro: string, data: Data): Data {
+  const newData = { ...data };
+  newData["intro"] = intro;
   return newData;
 }
 
