@@ -64,10 +64,8 @@ function Editor() {
                     {section.entries.map((entry, ei) => (
                       <TimelineEntry
                         key={ei}
-                        companyName={entry.companyName}
-                        name={entry.name}
-                        started={entry.started}
-                        ended={entry.ended}
+                        entry={entry}
+                        onChange={() => {}}
                       ></TimelineEntry>
                     ))}
                   </TimelineSection>
