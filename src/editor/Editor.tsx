@@ -47,9 +47,10 @@ function Editor() {
 
   return (
     <>
-      <div>
+      <div className="edit-controls">
         <button onClick={upload}>Upload</button>
         <button onClick={download}>Download</button>
+        <button onClick={print}>Print</button>
       </div>
       <div className="app">
         <Page format="a4" className="d-f">

@@ -220,6 +220,10 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
   html {
     font-size: 14px;
   }
+
+  .edit-controls {
+    display: none;
+  }
 }
 
 .datepicker {
