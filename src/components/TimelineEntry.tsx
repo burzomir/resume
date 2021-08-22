@@ -23,14 +23,6 @@ export default function TimelineEntry(
 
   const { name, companyName, started, ended } = entry;
 
-  const formatDate = (date: Date | string) =>
-    `${new Date(date).toLocaleDateString("en-us", {
-      month: "long",
-      year: "numeric",
-    })}`;
-  const _started = formatDate(started);
-  const _ended = ended ? formatDate(ended) : "Present";
-
   const nameRef = useContentEditable({
     value: name,
     onChange: (newName) => onChange(setName(newName, entry)),
@@ -52,12 +44,12 @@ export default function TimelineEntry(
           <span ref={nameRef} />
           <small>
             <DatePicker
-              date={started}
+              date={new Date(started)}
               onChange={(date) => onChange(setStarted(date, entry))}
             />
-            {" - "}
+            -&nbsp;&nbsp;
             <DatePicker
-              date={ended}
+              date={ended && new Date(ended)}
               onChange={(date) => {
                 onChange(setEnded(date, entry));
               }}
@@ -143,10 +135,11 @@ function YearPicker(props: DatePickerProps) {
     new Date(now - x, 0).getFullYear()
   );
   const optional = "optional" in props;
+  const selectedYear = props.date ? props.date.getFullYear() : "";
   return (
     <select
       className="datepicker__year"
-      value={props.date ? props.date.getFullYear() : ""}
+      value={selectedYear}
       onChange={(e) => {
         const year = parseInt(e.target.value);
         if (isNaN(year)) {
@@ -157,6 +150,7 @@ function YearPicker(props: DatePickerProps) {
           props.onChange(newDate);
         }
       }}
+      style={{ width: calculateSize(selectedYear ? selectedYear.toString() : 'Present').width }}
     >
       {optional && <option value="">Present</option>}
       {years.map((year) => (
