@@ -23,7 +23,7 @@ export default function TimelineEntry(
 
   const formatDate = (date: Date | string) =>
     `${new Date(date).toLocaleDateString("en-us", {
-      month: "short",
+      month: "long",
       year: "numeric",
     })}`;
   const _started = formatDate(started);
