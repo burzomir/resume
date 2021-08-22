@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContentEditable } from "./ContentEditable";
 
 export type NameProps = {
   name: string;
@@ -6,17 +7,6 @@ export type NameProps = {
 };
 
 export function Name({ name, onChange }: NameProps) {
-  const ref = React.useRef<HTMLHeadingElement>();
-  React.useEffect(() => {
-    if (ref.current) {
-      ref.current.innerText = name;
-    }
-  }, [name]);
-  return (
-    <h1
-      contentEditable="true"
-      onBlur={(e) => onChange(e.target.innerText)}
-      ref={ref}
-    />
-  );
+  const ref = useContentEditable<HTMLHeadingElement>({ value: name, onChange });
+  return <h1 ref={ref} />;
 }
