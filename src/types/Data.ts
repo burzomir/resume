@@ -1,12 +1,14 @@
 import downloadFile from "downloadjs";
 import * as JSONUtils from "../utils/JSON";
 import { defaultPicture, Picture } from "./Picture";
+import { defaultTimeline, Timeline } from "./Timeline/Timeline";
 
 export type Data = {
   version: number;
   avatar: Picture;
   name: string;
   intro: string;
+  timeline: Timeline;
 };
 
 export const defaultData: Data = {
@@ -14,6 +16,7 @@ export const defaultData: Data = {
   avatar: defaultPicture,
   name: "",
   intro: "",
+  timeline: defaultTimeline,
 };
 
 export function setAvatar(picture: Picture, data: Data): Data {

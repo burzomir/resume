@@ -5,6 +5,8 @@ import { Intro } from "../components/Intro";
 import { Name } from "../components/Name";
 import Page from "../components/Page";
 import Timeline from "../components/Timeline";
+import TimelineEntry from "../components/TimelineEntry";
+import TimelineSection from "../components/TimelineSection";
 import * as Data from "../types/Data";
 import { Picture } from "../types/Picture";
 
@@ -55,8 +57,21 @@ function Editor() {
               </div>
             </div>
             <div className="w-70 d-f">
-              <Timeline>
+              <Timeline className="w-100">
                 <Intro value={data.intro} onChange={setIntro} />
+                {data.timeline.map((section, si) => (
+                  <TimelineSection key={si} name={section.name}>
+                    {section.entries.map((entry, ei) => (
+                      <TimelineEntry
+                        key={ei}
+                        companyName={entry.companyName}
+                        name={entry.name}
+                        started={entry.started}
+                        ended={entry.ended}
+                      ></TimelineEntry>
+                    ))}
+                  </TimelineSection>
+                ))}
               </Timeline>
             </div>
           </div>
