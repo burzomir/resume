@@ -33,7 +33,6 @@ function Editor() {
       <div>
         <button onClick={upload}>Upload</button>
         <button onClick={download}>Download</button>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
       </div>
       <div className="app">
         <Page format="a4" className="d-f">
