@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { AvatarEditor } from "../components/AvatarEditor";
+import { Name } from "../components/Name";
 import Page from "../components/Page";
 import * as Data from "../types/Data";
 import { Picture } from "../types/Picture";
@@ -22,6 +23,11 @@ function Editor() {
     setData(newData);
   };
 
+  const setName = (name: string) => {
+    const newData = Data.setName(name, data);
+    setData(newData);
+  };
+
   return (
     <>
       <div>
@@ -39,7 +45,7 @@ function Editor() {
                   onPictureChange={setPicture}
                   className="w-80"
                 />
-                <h1>User Name</h1>
+                <Name name={data.name} onChange={setName} />
               </div>
             </div>
             <div className="w-70 d-f"></div>
