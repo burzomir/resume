@@ -5,12 +5,10 @@ export type Section = {
   entries: Entry[];
 };
 
-export const defaultSection: Section = addEntry(
-  addEntry({
-    name: "Section",
-    entries: [],
-  })
-);
+export const defaultSection: Section = {
+  name: "Section",
+  entries: [],
+};
 
 export function setName(name: string, section: Section): Section {
   const newSection = { ...section };

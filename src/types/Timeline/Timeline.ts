@@ -6,7 +6,7 @@ export function addSection(timeline: Timeline): Timeline {
   return [...timeline, defaultSection];
 }
 
-export const defaultTimeline: Timeline = addSection(addSection([]));
+export const defaultTimeline: Timeline = [];
 
 export function updateSection(
   index: number,
