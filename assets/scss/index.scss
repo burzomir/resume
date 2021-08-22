@@ -34,12 +34,7 @@ $grid-cols: 10;
   }
 }
 
-$directions: (
-  (top, t),
-  (right, r),
-  (bottom, b),
-  (left, l)
-);
+$directions: ((top, t), (right, r), (bottom, b), (left, l));
 
 @for $i from 0 through 5 {
   .p-#{$i} {
@@ -78,6 +73,8 @@ $directions: (
 
   &--add {
     color: cornflowerblue;
+    opacity: 0;
+    transition: opacity 100ms linear;
   }
 
   &--remove {
@@ -94,11 +91,15 @@ $directions: (
   }
 }
 
+.timeline:hover .timeline-section--add {
+  opacity: 1;
+}
+
 .timeline-entry {
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: calc(-2.5rem - 1px);
     top: 1px;
