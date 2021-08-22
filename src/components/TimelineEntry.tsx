@@ -6,6 +6,7 @@ import {
   setName,
   setStarted,
 } from "../types/Timeline/Entry";
+import { createRange } from "../utils/array";
 import { useContentEditable } from "./ContentEditable";
 
 interface TimelineEntryProps {
@@ -52,7 +53,9 @@ export default function TimelineEntry(
           <small>
             <span className="timeline-entry__date">
               {_started}
-              <input
+              <MonthPicker />
+              <YearPicker />
+              {/* <input
                 type="date"
                 value={new Date(started).toISOString().substr(0, 10)}
                 onChange={(e) => {
@@ -60,7 +63,7 @@ export default function TimelineEntry(
                   const newEntry = setStarted(newDate, entry);
                   onChange(newEntry);
                 }}
-              />
+              /> */}
             </span>
             {" - "}
             <span className="timeline-entry__date">
@@ -95,5 +98,38 @@ export function AddTimelineEntry(props: AddTimelineEntryProps) {
     <div className="timeline-entry timeline-entry--add" {...props}>
       <h4>Add new entry</h4>
     </div>
+  );
+}
+
+function MonthPicker() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const months = createRange(0, 12)
+    .map((month) => new Date(year, month))
+    .map((date) => date.toLocaleDateString("en-us", { month: "long" }));
+  return (
+    <select>
+      {months.map((month) => (
+        <option key={month} value={month}>
+          {month}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+function YearPicker() {
+  const now = new Date().getFullYear();
+  const years = createRange(0, 100).map((x) =>
+    new Date(now - x, 0).getFullYear()
+  );
+  return (
+    <select>
+      {years.map((year) => (
+        <option key={year} value={year}>
+          {year}
+        </option>
+      ))}
+    </select>
   );
 }
