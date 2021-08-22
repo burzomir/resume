@@ -1,8 +1,7 @@
 import * as React from 'react'
 
-const Avatar: React.StatelessComponent<React.ImgHTMLAttributes<HTMLImageElement>> = (props) => {
+export default function Avatar(props: React.ImgHTMLAttributes<HTMLImageElement>) {
   const { className, ...rest } = props
   return <img className={`avatar ${className ? className : ''}`} {...rest} />
 }
 
-export default Avatar

@@ -4,7 +4,7 @@ interface SkillSectionProps {
   name: string
 }
 
-const SkillSection: React.StatelessComponent<SkillSectionProps> = (props) => {
+export default function SkillSection(props: React.PropsWithChildren<SkillSectionProps>) {
   const {
     name,
     children
@@ -18,4 +18,3 @@ const SkillSection: React.StatelessComponent<SkillSectionProps> = (props) => {
   )
 }
 
-export default SkillSection

@@ -7,7 +7,7 @@ interface TimelineEntryProps {
   ended?: Date
 }
 
-const TimelineEntry: React.StatelessComponent<TimelineEntryProps> = (props) => {
+export default function TimelineEntry(props: React.PropsWithChildren<TimelineEntryProps>) {
   const {
     name,
     companyName,
@@ -34,4 +34,3 @@ const TimelineEntry: React.StatelessComponent<TimelineEntryProps> = (props) => {
   )
 }
 
-export default TimelineEntry

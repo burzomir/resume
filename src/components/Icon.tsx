@@ -6,6 +6,7 @@ interface IconProps {
   icon: Icon
 }
 
-const Icon: React.StatelessComponent<IconProps> = ({ icon }) => <span className={`icon-${icon}`} />
+export default function Icon({ icon }: IconProps) {
+  return <span className={`icon-${icon}`} />
+}
 
-export default Icon

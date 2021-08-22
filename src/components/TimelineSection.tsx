@@ -4,7 +4,7 @@ interface TimelineSectionProps {
   name: string
 }
 
-const TimelineSection: React.StatelessComponent<TimelineSectionProps> = (props) => {
+export default function TimelineSection(props: React.PropsWithChildren<TimelineSectionProps>) {
   const {
     name,
     children
@@ -18,4 +18,3 @@ const TimelineSection: React.StatelessComponent<TimelineSectionProps> = (props) 
   )
 }
 
-export default TimelineSection

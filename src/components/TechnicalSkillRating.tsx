@@ -9,7 +9,7 @@ interface LanguageRatingProps {
 const labels = ['Beginner', 'Junior', 'Regular', 'Advanced', 'Master']
 const maxRating = 5
 
-const LanguageRating: React.StatelessComponent<LanguageRatingProps> = (props) => {
+export default function LanguageRating(props: LanguageRatingProps) {
   const {
     name,
     rating
@@ -18,4 +18,3 @@ const LanguageRating: React.StatelessComponent<LanguageRatingProps> = (props) =>
   return <SkillRating {...{ name, rating, labels, maxRating }} />
 }
 
-export default LanguageRating

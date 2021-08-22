@@ -7,7 +7,7 @@ interface RatingProps {
   maxValue: number
 }
 
-const Rating: React.StatelessComponent<RatingProps> = (props) => {
+export default function Rating(props: RatingProps) {
   const {
     value,
     maxValue
@@ -35,4 +35,3 @@ const Rating: React.StatelessComponent<RatingProps> = (props) => {
   )
 }
 
-export default Rating

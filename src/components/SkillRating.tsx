@@ -8,7 +8,7 @@ interface SkillRatingProps<> {
   labels: string[]
 }
 
-const SkillRating: React.StatelessComponent<SkillRatingProps> = (props) => {
+export default function SkillRating(props: SkillRatingProps) {
   const {
     name,
     rating,
@@ -20,11 +20,10 @@ const SkillRating: React.StatelessComponent<SkillRatingProps> = (props) => {
     <div className='skill-rating'>
       <span className='skill-rating__name'>{name}</span>
       <div className='d-f'>
-        <Rating value={rating} maxValue={maxRating}/>
+        <Rating value={rating} maxValue={maxRating} />
         <i className='ml-1'>{labels[rating - 1]}</i>
       </div>
     </div>
   )
 }
 
-export default SkillRating
