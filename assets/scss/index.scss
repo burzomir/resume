@@ -73,8 +73,12 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 
   &--add {
     color: cornflowerblue;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 100ms linear;
+  }
+
+  & + &--add {
+    opacity: 0;
   }
 
   &--remove {
@@ -112,12 +116,17 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 
   &--add {
     color: cornflowerblue;
-    height: 0;
-    opacity: 0;
     transition: height 100ms linear, opacity 100ms linear;
+    height: 1em;
+    opacity: 1;
     &::before {
       display: none;
     }
+  }
+
+  & + &--add {
+    height: 0;
+    opacity: 0;
   }
 
   &--remove {
