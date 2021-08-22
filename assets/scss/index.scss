@@ -212,3 +212,12 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
     font-size: 14px;
   }
 }
+
+.datepicker {
+  select {
+    appearance: none;
+    border: none;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}

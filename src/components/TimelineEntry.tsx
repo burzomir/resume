@@ -8,6 +8,7 @@ import {
 } from "../types/Timeline/Entry";
 import { createRange } from "../utils/array";
 import { useContentEditable } from "./ContentEditable";
+import calculateSize from "calculate-size";
 
 interface TimelineEntryProps {
   entry: Entry;
@@ -49,37 +50,19 @@ export default function TimelineEntry(
         </div>
         <div className="d-f jc-sb">
           <span ref={nameRef} />
-          {/* <small>{`${_started} - ${_ended}`}</small> */}
           <small>
-            <span className="timeline-entry__date">
-              {_started}
-              <MonthPicker />
-              <YearPicker />
-              {/* <input
-                type="date"
-                value={new Date(started).toISOString().substr(0, 10)}
-                onChange={(e) => {
-                  const newDate = e.target.valueAsDate;
-                  const newEntry = setStarted(newDate, entry);
-                  onChange(newEntry);
-                }}
-              /> */}
-            </span>
+            <DatePicker
+              date={started}
+              onChange={(date) => onChange(setStarted(date, entry))}
+            />
             {" - "}
-            <span className="timeline-entry__date">
-              {_ended}
-              <input
-                type="date"
-                value={(ended ? new Date(ended) : new Date())
-                  .toISOString()
-                  .substr(0, 10)}
-                onChange={(e) => {
-                  const newDate = e.target.valueAsDate;
-                  const newEntry = setEnded(newDate, entry);
-                  onChange(newEntry);
-                }}
-              />
-            </span>
+            <DatePicker
+              date={ended}
+              onChange={(date) => {
+                onChange(setEnded(date, entry));
+              }}
+              optional
+            />
           </small>
         </div>
         <small ref={companyNameRef} />
@@ -101,14 +84,50 @@ export function AddTimelineEntry(props: AddTimelineEntryProps) {
   );
 }
 
-function MonthPicker() {
+type DatePickerProps =
+  | {
+      date: Date;
+      onChange: (date: Date) => void;
+    }
+  | {
+      date: Date | undefined;
+      onChange: (date: Date | undefined) => void;
+      optional: true;
+    };
+
+function DatePicker(props: DatePickerProps) {
+  return (
+    <span className="datepicker">
+      <MonthPicker {...props} />
+      <YearPicker {...props} />
+    </span>
+  );
+}
+
+function MonthPicker(props: DatePickerProps) {
   const now = new Date();
   const year = now.getFullYear();
   const months = createRange(0, 12)
     .map((month) => new Date(year, month))
     .map((date) => date.toLocaleDateString("en-us", { month: "long" }));
+  if (!props.date) {
+    return null;
+  }
+  const selectedMonth = months[props.date.getMonth()];
   return (
-    <select>
+    <select
+      className="datepicker__month"
+      onChange={(e) => {
+        const month = e.target.value;
+        const newDate = new Date(
+          props.date.getFullYear(),
+          months.findIndex((m) => m === month)
+        );
+        props.onChange(newDate);
+      }}
+      value={selectedMonth}
+      style={{ width: calculateSize(selectedMonth).width }}
+    >
       {months.map((month) => (
         <option key={month} value={month}>
           {month}
@@ -118,13 +137,28 @@ function MonthPicker() {
   );
 }
 
-function YearPicker() {
+function YearPicker(props: DatePickerProps) {
   const now = new Date().getFullYear();
   const years = createRange(0, 100).map((x) =>
     new Date(now - x, 0).getFullYear()
   );
+  const optional = "optional" in props;
   return (
-    <select>
+    <select
+      className="datepicker__year"
+      value={props.date ? props.date.getFullYear() : ""}
+      onChange={(e) => {
+        const year = parseInt(e.target.value);
+        if (isNaN(year)) {
+          props.onChange(undefined);
+        } else {
+          const newDate = new Date(props.date);
+          newDate.setFullYear(year);
+          props.onChange(newDate);
+        }
+      }}
+    >
+      {optional && <option value="">Present</option>}
       {years.map((year) => (
         <option key={year} value={year}>
           {year}
