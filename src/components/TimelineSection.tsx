@@ -1,7 +1,13 @@
 import * as React from "react";
-import { Section, setName, updateEntry } from "../types/Timeline/Section";
+import {
+  addEntry,
+  removeEntry,
+  Section,
+  setName,
+  updateEntry,
+} from "../types/Timeline/Section";
 import { useContentEditable } from "./ContentEditable";
-import TimelineEntry from "./TimelineEntry";
+import TimelineEntry, { AddTimelineEntry } from "./TimelineEntry";
 
 interface TimelineSectionProps {
   section: Section;
@@ -34,8 +40,17 @@ export default function TimelineSection({
           onChange={(newEntry) => {
             onChange(updateEntry(index, newEntry, section));
           }}
+          onRemove={() => {
+            onChange(removeEntry(index, section));
+          }}
         />
       ))}
+      <AddTimelineEntry
+        onClick={() => {
+          const newSection = addEntry(section);
+          onChange(newSection);
+        }}
+      />
     </div>
   );
 }

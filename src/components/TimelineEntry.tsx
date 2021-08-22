@@ -11,12 +11,13 @@ import { useContentEditable } from "./ContentEditable";
 interface TimelineEntryProps {
   entry: Entry;
   onChange: (entry: Entry) => void;
+  onRemove: () => void;
 }
 
 export default function TimelineEntry(
   props: React.PropsWithChildren<TimelineEntryProps>
 ) {
-  const { entry, onChange, children } = props;
+  const { entry, onChange, onRemove, children } = props;
 
   const { name, companyName, started, ended } = entry;
 
@@ -42,6 +43,9 @@ export default function TimelineEntry(
   return (
     <div className="timeline-entry">
       <h4>
+        <div className="timeline-entry--remove" onClick={onRemove}>
+          Remove entry
+        </div>
         <div className="d-f jc-sb">
           <span ref={nameRef} />
           {/* <small>{`${_started} - ${_ended}`}</small> */}
@@ -78,6 +82,18 @@ export default function TimelineEntry(
         <small ref={companyNameRef} />
       </h4>
       {children}
+    </div>
+  );
+}
+
+type AddTimelineEntryProps = {
+  onClick: () => void;
+};
+
+export function AddTimelineEntry(props: AddTimelineEntryProps) {
+  return (
+    <div className="timeline-entry timeline-entry--add" {...props}>
+      <h4>Add new entry</h4>
     </div>
   );
 }

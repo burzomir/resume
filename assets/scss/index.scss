@@ -110,6 +110,31 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
     border-radius: 50%;
   }
 
+  &--add {
+    color: cornflowerblue;
+    height: 0;
+    opacity: 0;
+    transition: height 100ms linear, opacity 100ms linear;
+    &::before {
+      display: none;
+    }
+  }
+
+  &--remove {
+    color: firebrick;
+    position: absolute;
+    font-size: small;
+    font-weight: lighter;
+    opacity: 0;
+    top: 0;
+    transition: top 100ms linear, opacity 100ms linear;
+  }
+
+  h4:hover &--remove {
+    opacity: 1;
+    top: -1em;
+  }
+
   &__date {
     position: relative;
     input {
@@ -125,6 +150,11 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
       }
     }
   }
+}
+
+.timeline-section:hover .timeline-entry--add {
+  height: 1em;
+  opacity: 1;
 }
 
 .rating {
