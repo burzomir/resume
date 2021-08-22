@@ -37,6 +37,12 @@ export function setIntro(intro: string, data: Data): Data {
   return newData;
 }
 
+export function setTimeline(timeline: Timeline, data: Data): Data {
+  const newData = { ...data };
+  newData.timeline = timeline;
+  return newData;
+}
+
 export function download(data: Data) {
   downloadFile(JSON.stringify(data), "resume.json", "application/json");
 }
