@@ -3,6 +3,8 @@ import Avatar from "./Avatar";
 import * as FileUtils from "../utils/file";
 import * as Picture from "../types/Picture";
 
+import placeholder from "../../assets/placeholder.png";
+
 export type AvatarEditorProps = {
   picture: Picture.Picture;
   onPictureChange: (picture: Picture.Picture) => void;
@@ -18,5 +20,7 @@ export function AvatarEditor({
     const picture = await Picture.fromFile(file);
     onPictureChange(picture);
   };
-  return <Avatar {...props} src={picture.data} onClick={upload} />;
+  return (
+    <Avatar {...props} src={picture.data || placeholder} onClick={upload} />
+  );
 }

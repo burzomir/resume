@@ -14,8 +14,8 @@ export type Data = {
 export const defaultData: Data = {
   version: 1,
   avatar: defaultPicture,
-  name: "",
-  intro: "",
+  name: "Your Name",
+  intro: "Describe yourself here",
   timeline: defaultTimeline,
 };
 
