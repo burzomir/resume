@@ -6,11 +6,13 @@ import TimelineEntry from "./TimelineEntry";
 interface TimelineSectionProps {
   section: Section;
   onChange: (section: Section) => void;
+  onRemove: () => void;
 }
 
 export default function TimelineSection({
   section,
   onChange,
+  onRemove,
 }: TimelineSectionProps) {
   const nameRef = useContentEditable({
     value: section.name,
@@ -19,7 +21,12 @@ export default function TimelineSection({
 
   return (
     <div className="timeline-section">
-      <h2 ref={nameRef} />
+      <div className="timeline-section__header">
+        <div className="timeline-section--remove" onClick={onRemove}>
+          Remove section
+        </div>
+        <h2 ref={nameRef} />
+      </div>
       {section.entries.map((entry, index) => (
         <TimelineEntry
           key={index}
@@ -29,6 +36,18 @@ export default function TimelineSection({
           }}
         />
       ))}
+    </div>
+  );
+}
+
+type AddTimelineSectionProps = {
+  onClick: () => void;
+};
+
+export function AddTimelineSection(props: AddTimelineSectionProps) {
+  return (
+    <div className="timeline-section timeline-section--add" {...props}>
+      <h2>Add new section</h2>
     </div>
   );
 }

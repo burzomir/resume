@@ -73,6 +73,27 @@ $directions: (
   border-left: 1px solid $color-text;
 }
 
+.timeline-section {
+  position: relative;
+
+  &--add {
+    color: cornflowerblue;
+  }
+
+  &--remove {
+    color: firebrick;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: top 100ms linear, opacity 100ms linear;
+  }
+
+  &__header:hover &--remove {
+    top: -1em;
+    opacity: 1;
+  }
+}
+
 .timeline-entry {
   position: relative;
 

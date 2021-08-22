@@ -6,11 +6,17 @@ import { Name } from "../components/Name";
 import Page from "../components/Page";
 import Timeline from "../components/Timeline";
 import TimelineEntry from "../components/TimelineEntry";
-import TimelineSection from "../components/TimelineSection";
+import TimelineSection, {
+  AddTimelineSection,
+} from "../components/TimelineSection";
 import * as Data from "../types/Data";
 import { Picture } from "../types/Picture";
 import { updateEntry } from "../types/Timeline/Section";
-import { updateSection } from "../types/Timeline/Timeline";
+import {
+  addSection,
+  removeSection,
+  updateSection,
+} from "../types/Timeline/Timeline";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
@@ -74,8 +80,20 @@ function Editor() {
                       const newData = Data.setTimeline(newTimeline, data);
                       setData(newData);
                     }}
+                    onRemove={() => {
+                      const newTimeline = removeSection(index, data.timeline);
+                      const newData = Data.setTimeline(newTimeline, data);
+                      setData(newData);
+                    }}
                   />
                 ))}
+                <AddTimelineSection
+                  onClick={() => {
+                    const newTimeline = addSection(data.timeline);
+                    const newData = Data.setTimeline(newTimeline, data);
+                    setData(newData);
+                  }}
+                />
               </Timeline>
             </div>
           </div>
