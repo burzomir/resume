@@ -61,25 +61,20 @@ function Editor() {
             <div className="w-70 d-f">
               <Timeline className="w-100">
                 <Intro value={data.intro} onChange={setIntro} />
-                {data.timeline.map((section, si) => (
-                  <TimelineSection key={si} name={section.name}>
-                    {section.entries.map((entry, ei) => (
-                      <TimelineEntry
-                        key={ei}
-                        entry={entry}
-                        onChange={(newEntry) => {
-                          const newSection = updateEntry(ei, newEntry, section);
-                          const newTimeline = updateSection(
-                            si,
-                            newSection,
-                            data.timeline
-                          );
-                          const newData = Data.setTimeline(newTimeline, data);
-                          setData(newData);
-                        }}
-                      ></TimelineEntry>
-                    ))}
-                  </TimelineSection>
+                {data.timeline.map((section, index) => (
+                  <TimelineSection
+                    key={index}
+                    section={section}
+                    onChange={(newSection) => {
+                      const newTimeline = updateSection(
+                        index,
+                        newSection,
+                        data.timeline
+                      );
+                      const newData = Data.setTimeline(newTimeline, data);
+                      setData(newData);
+                    }}
+                  />
                 ))}
               </Timeline>
             </div>

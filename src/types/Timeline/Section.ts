@@ -12,6 +12,12 @@ export const defaultSection: Section = addEntry(
   })
 );
 
+export function setName(name: string, section: Section): Section {
+  const newSection = { ...section };
+  newSection.name = name;
+  return newSection;
+}
+
 export function addEntry(section: Section): Section {
   const newSection = { ...section };
   newSection.entries = [...section.entries, defaultEntry];
