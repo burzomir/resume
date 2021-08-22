@@ -1,5 +1,11 @@
 import * as React from "react";
-import { Entry, setCompanyName, setName } from "../types/Timeline/Entry";
+import {
+  Entry,
+  setCompanyName,
+  setEnded,
+  setName,
+  setStarted,
+} from "../types/Timeline/Entry";
 import { useContentEditable } from "./ContentEditable";
 
 interface TimelineEntryProps {
@@ -38,7 +44,36 @@ export default function TimelineEntry(
       <h4>
         <div className="d-f jc-sb">
           <span ref={nameRef} />
-          <small>{`${_started} - ${_ended}`}</small>
+          {/* <small>{`${_started} - ${_ended}`}</small> */}
+          <small>
+            <span className="timeline-entry__date">
+              {_started}
+              <input
+                type="date"
+                value={new Date(started).toISOString().substr(0, 10)}
+                onChange={(e) => {
+                  const newDate = e.target.valueAsDate;
+                  const newEntry = setStarted(newDate, entry);
+                  onChange(newEntry);
+                }}
+              />
+            </span>
+            {" - "}
+            <span className="timeline-entry__date">
+              {_ended}
+              <input
+                type="date"
+                value={(ended ? new Date(ended) : new Date())
+                  .toISOString()
+                  .substr(0, 10)}
+                onChange={(e) => {
+                  const newDate = e.target.valueAsDate;
+                  const newEntry = setEnded(newDate, entry);
+                  onChange(newEntry);
+                }}
+              />
+            </span>
+          </small>
         </div>
         <small ref={companyNameRef} />
       </h4>

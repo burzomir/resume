@@ -87,6 +87,22 @@ $directions: (
     background: white;
     border-radius: 50%;
   }
+
+  &__date {
+    position: relative;
+    input {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+    }
+
+    &:hover {
+      input {
+        display: inline;
+      }
+    }
+  }
 }
 
 .rating {
