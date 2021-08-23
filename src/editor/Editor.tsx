@@ -15,6 +15,7 @@ import {
   removeSection,
   updateSection,
 } from "../types/Timeline/Timeline";
+import SkillSection from "../components/SkillSection";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
@@ -62,6 +63,13 @@ function Editor() {
                 />
                 <Name name={data.name} onChange={setName} />
               </div>
+              {data.sidebar.sections.map((section, index) => (
+                <SkillSection
+                  key={index}
+                  name={section.name}
+                  onChange={() => {}}
+                />
+              ))}
             </div>
             <div className="w-70 d-f">
               <Timeline className="w-100">
