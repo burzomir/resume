@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel ./src/index.html",
     "start:editor": "parcel ./src/editor/index.html",
+    "start:tsc": "tsc --noEmit --watch",
     "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
@@ -22,7 +23,8 @@
   "devDependencies": {
     "@parcel/transformer-image": "2.0.0-rc.0",
     "@parcel/transformer-sass": "2.0.0-rc.0",
-    "parcel": "^2.0.0-rc.0"
+    "parcel": "^2.0.0-rc.0",
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "@types/downloadjs": "^1.4.2",

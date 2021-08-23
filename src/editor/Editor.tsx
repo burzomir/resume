@@ -5,13 +5,11 @@ import { Intro } from "../components/Intro";
 import { Name } from "../components/Name";
 import Page from "../components/Page";
 import Timeline from "../components/Timeline";
-import TimelineEntry from "../components/TimelineEntry";
 import TimelineSection, {
   AddTimelineSection,
 } from "../components/TimelineSection";
 import * as Data from "../types/Data";
 import { Picture } from "../types/Picture";
-import { updateEntry } from "../types/Timeline/Section";
 import {
   addSection,
   removeSection,

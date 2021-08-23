@@ -7,9 +7,10 @@
       "module": "commonjs",
       "target": "es6",
       "jsx": "react",
-      "esModuleInterop": true
+      "esModuleInterop": true,
   },
   "include": [
-      "./src/**/*"
+      "./src/editor/index.ts",
+      "./src/typings.d.ts"
   ]
 }
