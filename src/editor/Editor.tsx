@@ -68,6 +68,7 @@ function Editor() {
                   key={index}
                   name={section.name}
                   onChange={() => {}}
+                  onRemove={() => {}}
                 />
               ))}
             </div>

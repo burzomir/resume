@@ -187,6 +187,27 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
   }
 }
 
+.skill-section {
+  &__header {
+    position: relative;
+  }
+
+  &__header:hover &__remove {
+    opacity: 1;
+    top: -1em;
+  }
+
+  &__remove {
+    color: firebrick;
+    position: absolute;
+    font-size: small;
+    font-weight: lighter;
+    opacity: 0;
+    top: 0;
+    transition: top 100ms linear, opacity 100ms linear;
+  }
+}
+
 .avatar {
   border-radius: 50%;
 }
