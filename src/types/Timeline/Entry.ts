@@ -1,8 +1,13 @@
+import { defaultText, Text } from "../Sidebar/Text";
+import * as O from "../../utils/object";
+import * as A from "../../utils/array";
+
 export type Entry = {
   name: string;
   companyName: string;
   started: Date;
   ended: Date | undefined;
+  content: Text[];
 };
 
 export const defaultEntry: Entry = {
@@ -10,6 +15,7 @@ export const defaultEntry: Entry = {
   companyName: "Place",
   started: new Date(),
   ended: undefined,
+  content: [],
 };
 
 export function setName(name: string, entry: Entry): Entry {
@@ -34,4 +40,16 @@ export function setEnded(date: Date | undefined, entry: Entry): Entry {
   const newEntry = { ...entry };
   newEntry.ended = date;
   return newEntry;
+}
+
+export function addText(entry: Entry): Entry {
+  return O.set("content", A.add(defaultText, entry.content), entry);
+}
+
+export function updateText(index: number, text: Text, entry: Entry): Entry {
+  return O.set("content", A.update(index, text, entry.content), entry);
+}
+
+export function removeText(index: number, entry: Entry): Entry {
+  return O.set("content", A.remove(index, entry.content), entry);
 }

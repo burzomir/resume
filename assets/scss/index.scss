@@ -159,6 +159,24 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
       }
     }
   }
+
+  &__add-text {
+    margin: 1em 0;
+    color: cornflowerblue;
+    transition: height 100ms linear, opacity 100ms linear;
+    height: 1em;
+    opacity: 1;
+  }
+
+  &:hover &__add-text {
+    height: 1em;
+    opacity: 1;
+  }
+
+  .text + &__add-text {
+    height: 0;
+    opacity: 0;
+  }
 }
 
 .timeline-section:hover .timeline-entry--add {

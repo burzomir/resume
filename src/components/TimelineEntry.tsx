@@ -1,14 +1,17 @@
 import * as React from "react";
 import {
+  addText,
   Entry,
   setCompanyName,
   setEnded,
   setName,
   setStarted,
+  updateText,
 } from "../types/Timeline/Entry";
 import { createRange } from "../utils/array";
 import { useContentEditable } from "./ContentEditable";
 import calculateSize from "calculate-size";
+import { Text } from "./Text";
 
 interface TimelineEntryProps {
   entry: Entry;
@@ -16,10 +19,8 @@ interface TimelineEntryProps {
   onRemove: () => void;
 }
 
-export default function TimelineEntry(
-  props: React.PropsWithChildren<TimelineEntryProps>
-) {
-  const { entry, onChange, onRemove, children } = props;
+export default function TimelineEntry(props: TimelineEntryProps) {
+  const { entry, onChange, onRemove } = props;
 
   const { name, companyName, started, ended } = entry;
 
@@ -59,7 +60,23 @@ export default function TimelineEntry(
         </div>
         <small ref={companyNameRef} />
       </h4>
-      {children}
+      {entry.content.map((text, index) => (
+        <Text
+          text={text}
+          key={index}
+          onChange={(newText) => {
+            onChange(updateText(index, newText, entry));
+          }}
+        />
+      ))}
+      <div
+        className="timeline-entry__add-text"
+        onClick={() => {
+          onChange(addText(entry));
+        }}
+      >
+        Add text
+      </div>
     </div>
   );
 }
@@ -150,7 +167,10 @@ function YearPicker(props: DatePickerProps) {
           props.onChange(newDate);
         }
       }}
-      style={{ width: calculateSize(selectedYear ? selectedYear.toString() : 'Present').width }}
+      style={{
+        width: calculateSize(selectedYear ? selectedYear.toString() : "Present")
+          .width,
+      }}
     >
       {optional && <option value="">Present</option>}
       {years.map((year) => (
