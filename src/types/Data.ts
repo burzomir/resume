@@ -2,7 +2,7 @@ import downloadFile from "downloadjs";
 import * as JSONUtils from "../utils/JSON";
 import { defaultPicture, Picture } from "./Picture";
 import { defaultTimeline, Timeline } from "./Timeline/Timeline";
-import { Sidebar, defaultSidebar } from "./Skills/Sidebar";
+import { Sidebar, defaultSidebar } from "./Sidebar/Sidebar";
 export type Data = {
   version: number;
   avatar: Picture;
