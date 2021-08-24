@@ -1,5 +1,6 @@
 import downloadFile from "downloadjs";
 import * as JSONUtils from "../utils/JSON";
+import * as O from "../utils/object";
 import { defaultPicture, Picture } from "./Picture";
 import { defaultTimeline, Timeline } from "./Timeline/Timeline";
 import { Sidebar, defaultSidebar } from "./Sidebar/Sidebar";
@@ -43,6 +44,10 @@ export function setTimeline(timeline: Timeline, data: Data): Data {
   const newData = { ...data };
   newData.timeline = timeline;
   return newData;
+}
+
+export function setSidebar(sidebar: Sidebar, data: Data): Data {
+  return O.set("sidebar", sidebar, data);
 }
 
 export function download(data: Data) {

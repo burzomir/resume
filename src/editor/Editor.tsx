@@ -15,7 +15,9 @@ import {
   removeSection,
   updateSection,
 } from "../types/Timeline/Timeline";
-import SkillSection from "../components/SkillSection";
+import SkillSection, { AddSkillSection } from "../components/SkillSection";
+import * as Sidebar from "../types/Sidebar/Sidebar";
+import * as O from "../utils/object";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
@@ -67,10 +69,33 @@ function Editor() {
                 <SkillSection
                   key={index}
                   name={section.name}
-                  onChange={() => {}}
-                  onRemove={() => {}}
+                  onChange={(name) => {
+                    const newSection = O.set("name", name, section);
+                    const newSidebar = Sidebar.updateSection(
+                      index,
+                      newSection,
+                      data.sidebar
+                    );
+                    const newData = Data.setSidebar(newSidebar, data);
+                    setData(newData);
+                  }}
+                  onRemove={() => {
+                    const newSidebar = Sidebar.removeSection(
+                      index,
+                      data.sidebar
+                    );
+                    const newData = Data.setSidebar(newSidebar, data);
+                    setData(newData);
+                  }}
                 />
               ))}
+              <AddSkillSection
+                onClick={() => {
+                  const newSidebar = Sidebar.addSection(data.sidebar);
+                  const newData = Data.setSidebar(newSidebar, data);
+                  setData(newData);
+                }}
+              />
             </div>
             <div className="w-70 d-f">
               <Timeline className="w-100">

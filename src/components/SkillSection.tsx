@@ -29,3 +29,17 @@ export default function SkillSection(
     </div>
   );
 }
+
+export type AddSkillSectionProps = {
+  onClick: () => void;
+};
+
+export function AddSkillSection({ onClick }: AddSkillSectionProps) {
+  return (
+    <div className="skill-section skill-section__add mb-3" onClick={onClick}>
+      <div className="skill-section__header">
+        <h2 className="mb-1">Add new section</h2>
+      </div>
+    </div>
+  );
+}

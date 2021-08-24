@@ -7,7 +7,7 @@ export type Sidebar = {
 };
 
 export const defaultSidebar: Sidebar = {
-  sections: [defaultSection],
+  sections: [],
 };
 
 export function addSection(sidebar: Sidebar): Sidebar {

@@ -206,6 +206,13 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
     top: 0;
     transition: top 100ms linear, opacity 100ms linear;
   }
+
+  &__add {
+    color: cornflowerblue;
+    transition: height 100ms linear, opacity 100ms linear;
+    height: 1em;
+    opacity: 1;
+  }
 }
 
 .avatar {
