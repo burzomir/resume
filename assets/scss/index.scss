@@ -246,6 +246,20 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 
   &__add-controls {
     margin: 1em 0;
+    color: cornflowerblue;
+    transition: height 100ms linear, opacity 100ms linear;
+    height: 1em;
+    opacity: 1;
+  }
+
+  &:hover &__add-controls {
+    height: 1em;
+    opacity: 1;
+  }
+
+  &__item + &__add-controls {
+    height: 0;
+    opacity: 0;
   }
 
   &__add-item {
