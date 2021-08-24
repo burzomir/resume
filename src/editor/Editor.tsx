@@ -70,9 +70,8 @@ function Editor() {
               {data.sidebar.sections.map((section, index) => (
                 <SkillSection
                   key={index}
-                  name={section.name}
-                  onChange={(name) => {
-                    const newSection = O.set("name", name, section);
+                  section={section}
+                  onChange={(newSection) => {
                     const newSidebar = Sidebar.updateSection(
                       index,
                       newSection,
@@ -89,9 +88,7 @@ function Editor() {
                     const newData = Data.setSidebar(newSidebar, data);
                     setData(newData);
                   }}
-                >
-                  <Rating rating={defaultRating} onChange={() => {}} />
-                </SkillSection>
+                />
               ))}
               <AddSkillSection
                 onClick={() => {

@@ -183,7 +183,7 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
       opacity: 0;
       transition: opacity 100ms linear, left 100ms linear;
     }
-    
+
     &--add {
       position: absolute;
       font-size: xx-small;
@@ -241,6 +241,32 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
   &__add {
     color: cornflowerblue;
     transition: opacity 100ms linear;
+    opacity: 1;
+  }
+
+  &__add-controls {
+    margin: 1em 0;
+  }
+
+  &__add-item {
+    color: cornflowerblue;
+    margin-right: 1em;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__remove-item {
+    color: firebrick;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: top 100ms linear, opacity 100ms linear;
+  }
+
+  &__item:hover &__remove-item {
+    top: -1em;
     opacity: 1;
   }
 }

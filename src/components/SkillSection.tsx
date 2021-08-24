@@ -1,20 +1,29 @@
 import * as React from "react";
+import {
+  addRatingItem,
+  addTextItem,
+  makeRatingItem,
+  removeItem,
+  Section,
+  setName,
+  updateItem,
+} from "../types/Sidebar/Section";
 import { useContentEditable } from "./ContentEditable";
+import Rating from "./Rating2";
+import * as O from "../utils/object";
 
 interface SkillSectionProps {
-  name: string;
-  onChange: (name: string) => void;
+  section: Section;
+  onChange: (section: Section) => void;
   onRemove: () => void;
 }
 
-export default function SkillSection(
-  props: React.PropsWithChildren<SkillSectionProps>
-) {
-  const { name, children, onChange, onRemove } = props;
+export default function SkillSection(props: SkillSectionProps) {
+  const { section, onChange, onRemove } = props;
 
   const ref = useContentEditable({
-    value: name,
-    onChange,
+    value: section.name,
+    onChange: (name) => onChange(setName(name, section)),
   });
 
   return (
@@ -25,7 +34,41 @@ export default function SkillSection(
         </div>
         <h2 className="mb-1" ref={ref} />
       </div>
-      {children}
+      {section.content.map((item, index) => (
+        <div key={index} className="skill-section__item">
+          <div
+            className="skill-section__remove-item"
+            onClick={() => {
+              onChange(removeItem(index, section));
+            }}
+          >
+            Remove
+          </div>
+          {item.type === "Rating" && (
+            <Rating
+              rating={item.rating}
+              onChange={(rating) => {
+                onChange(updateItem(index, makeRatingItem(rating), section));
+              }}
+            />
+          )}
+          {item.type === "Text" && <div>{item.text.text}</div>}
+        </div>
+      ))}
+      <div className="skill-section__add-controls">
+        <span
+          className="skill-section__add-item"
+          onClick={() => onChange(addRatingItem(section))}
+        >
+          Add rating
+        </span>
+        <span
+          className="skill-section__add-item"
+          onClick={() => onChange(addTextItem(section))}
+        >
+          Add text
+        </span>
+      </div>
     </div>
   );
 }
