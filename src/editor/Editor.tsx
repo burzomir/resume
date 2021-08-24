@@ -56,7 +56,7 @@ function Editor() {
       <div className="app">
         <Page format="a4" className="d-f">
           <div className="d-f p-2 w-100">
-            <div className="w-30 pr-2">
+            <div className="w-30 pr-2 sidebar">
               <div className="text-center mb-2">
                 <AvatarEditor
                   picture={data.avatar}

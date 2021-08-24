@@ -209,10 +209,17 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 
   &__add {
     color: cornflowerblue;
-    transition: height 100ms linear, opacity 100ms linear;
-    height: 1em;
+    transition: opacity 100ms linear;
     opacity: 1;
   }
+}
+
+.skill-section + .skill-section__add {
+  opacity: 0;
+}
+
+.sidebar:hover .skill-section__add {
+  opacity: 1;
 }
 
 .avatar {
