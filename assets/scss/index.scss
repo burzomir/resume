@@ -168,11 +168,42 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 
 .rating {
   margin-left: -0.25rem;
+  position: relative;
 
   &__item {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
     font-size: 0.75rem;
+
+    &--remove {
+      position: absolute;
+      font-size: xx-small;
+      top: 0.35em;
+      left: 0;
+      opacity: 0;
+      transition: opacity 100ms linear, left 100ms linear;
+    }
+    
+    &--add {
+      position: absolute;
+      font-size: xx-small;
+      top: 0.35em;
+      right: 0;
+      opacity: 0;
+      transition: opacity 100ms linear, right 100ms linear;
+    }
+  }
+
+  &:hover &__item {
+    &--remove {
+      left: -1em;
+      opacity: 1;
+    }
+
+    &--add {
+      right: -1em;
+      opacity: 1;
+    }
   }
 }
 

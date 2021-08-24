@@ -18,6 +18,8 @@ import {
 import SkillSection, { AddSkillSection } from "../components/SkillSection";
 import * as Sidebar from "../types/Sidebar/Sidebar";
 import * as O from "../utils/object";
+import Rating from "../components/Rating2";
+import { defaultRating } from "../types/Sidebar/Rating";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
@@ -87,7 +89,9 @@ function Editor() {
                     const newData = Data.setSidebar(newSidebar, data);
                     setData(newData);
                   }}
-                />
+                >
+                  <Rating rating={defaultRating} onChange={() => {}} />
+                </SkillSection>
               ))}
               <AddSkillSection
                 onClick={() => {

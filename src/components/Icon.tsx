@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-type Icon = 'circle' | 'circle-fill' | 'github' | 'phone' | 'envelope' | 'linkedin'
+type Icon = 'circle' | 'circle-fill' | 'github' | 'phone' | 'envelope' | 'linkedin' | 'plus' | 'minus'
 
 interface IconProps {
   icon: Icon
