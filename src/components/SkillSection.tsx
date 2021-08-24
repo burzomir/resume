@@ -3,6 +3,7 @@ import {
   addRatingItem,
   addTextItem,
   makeRatingItem,
+  makeTextItem,
   removeItem,
   Section,
   setName,
@@ -10,8 +11,7 @@ import {
 } from "../types/Sidebar/Section";
 import { useContentEditable } from "./ContentEditable";
 import Rating from "./Rating2";
-import * as O from "../utils/object";
-
+import { Text } from "./Text";
 interface SkillSectionProps {
   section: Section;
   onChange: (section: Section) => void;
@@ -52,7 +52,14 @@ export default function SkillSection(props: SkillSectionProps) {
               }}
             />
           )}
-          {item.type === "Text" && <div>{item.text.text}</div>}
+          {item.type === "Text" && (
+            <Text
+              text={item.text}
+              onChange={(newText) =>
+                onChange(updateItem(index, makeTextItem(newText), section))
+              }
+            />
+          )}
         </div>
       ))}
       <div className="skill-section__add-controls">
