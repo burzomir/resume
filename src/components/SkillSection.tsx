@@ -13,6 +13,8 @@ import { useContentEditable } from "./ContentEditable";
 import Rating from "./Rating2";
 import { Text } from "./Text";
 import { ContextMenu, useContextMenu } from "./ContextMenu";
+import { IconButton } from "./IconButton";
+import * as Icon from "react-feather";
 interface SkillSectionProps {
   section: Section;
   onChange: (section: Section) => void;
@@ -33,14 +35,21 @@ export default function SkillSection(props: SkillSectionProps) {
     <div className="skill-section mb-3">
       <div className="skill-section__header" ref={contextMenuApi.ref}>
         <ContextMenu api={contextMenuApi}>
-          <button onClick={onRemove}>Remove section</button>
-          <button onClick={() => onChange(addRatingItem(section))}>
-            Add rating
-          </button>
-
-          <button onClick={() => onChange(addTextItem(section))}>
-            Add text
-          </button>
+          <IconButton title="Remove section" onClick={onRemove}>
+            <Icon.X />
+          </IconButton>
+          <IconButton
+            title="Add rating"
+            onClick={() => onChange(addRatingItem(section))}
+          >
+            <Icon.PlusCircle />
+          </IconButton>
+          <IconButton
+            title="Add text"
+            onClick={() => onChange(addTextItem(section))}
+          >
+            <Icon.Type />
+          </IconButton>
         </ContextMenu>
         <h2 className="mb-1" ref={ref} />
       </div>
