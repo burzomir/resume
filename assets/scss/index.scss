@@ -362,3 +362,16 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 .text {
   margin: 0.5em 0;
 }
+
+.context-menu {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  transition: opacity 100ms linear, top 100ms linear;
+
+  &--open {
+    opacity: 1;
+    top: -1.5em;
+  }
+}

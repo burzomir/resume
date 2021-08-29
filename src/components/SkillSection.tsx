@@ -12,6 +12,7 @@ import {
 import { useContentEditable } from "./ContentEditable";
 import Rating from "./Rating2";
 import { Text } from "./Text";
+import { ContextMenu, useContextMenu } from "./ContextMenu";
 interface SkillSectionProps {
   section: Section;
   onChange: (section: Section) => void;
@@ -26,12 +27,21 @@ export default function SkillSection(props: SkillSectionProps) {
     onChange: (name) => onChange(setName(name, section)),
   });
 
+  const contextMenuApi = useContextMenu<HTMLDivElement>();
+
   return (
     <div className="skill-section mb-3">
-      <div className="skill-section__header">
-        <div className="skill-section__remove" onClick={onRemove}>
-          Remove section
-        </div>
+      <div className="skill-section__header" ref={contextMenuApi.ref}>
+        <ContextMenu api={contextMenuApi}>
+          <button onClick={onRemove}>Remove section</button>
+          <button onClick={() => onChange(addRatingItem(section))}>
+            Add rating
+          </button>
+
+          <button onClick={() => onChange(addTextItem(section))}>
+            Add text
+          </button>
+        </ContextMenu>
         <h2 className="mb-1" ref={ref} />
       </div>
       {section.content.map((item, index) => (
