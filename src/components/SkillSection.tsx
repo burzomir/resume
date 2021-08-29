@@ -35,21 +35,27 @@ export default function SkillSection(props: SkillSectionProps) {
     <div className="skill-section mb-3">
       <div className="skill-section__header" ref={contextMenuApi.ref}>
         <ContextMenu api={contextMenuApi}>
-          <IconButton title="Remove section" onClick={onRemove}>
-            <Icon.X />
-          </IconButton>
           <IconButton
+            className="danger"
+            title="Remove section"
+            onClick={onRemove}
+            size={18}
+            Icon={Icon.X}
+          />
+          <IconButton
+            className="primary"
             title="Add rating"
             onClick={() => onChange(addRatingItem(section))}
-          >
-            <Icon.PlusCircle />
-          </IconButton>
+            size={18}
+            Icon={Icon.Circle}
+          />
           <IconButton
+            className="primary"
             title="Add text"
             onClick={() => onChange(addTextItem(section))}
-          >
-            <Icon.Type />
-          </IconButton>
+            size={18}
+            Icon={Icon.Type}
+          />
         </ContextMenu>
         <h2 className="mb-1" ref={ref} />
       </div>
@@ -81,20 +87,6 @@ export default function SkillSection(props: SkillSectionProps) {
           )}
         </div>
       ))}
-      <div className="skill-section__add-controls">
-        <span
-          className="skill-section__add-item"
-          onClick={() => onChange(addRatingItem(section))}
-        >
-          Add rating
-        </span>
-        <span
-          className="skill-section__add-item"
-          onClick={() => onChange(addTextItem(section))}
-        >
-          Add text
-        </span>
-      </div>
     </div>
   );
 }

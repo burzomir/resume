@@ -237,68 +237,9 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 }
 
 .skill-section {
-  &__header {
-    position: relative;
-  }
-
-  &__header:hover &__remove {
-    opacity: 1;
-    top: -1em;
-  }
-
-  &__remove {
-    color: firebrick;
-    position: absolute;
-    font-size: small;
-    font-weight: lighter;
-    opacity: 0;
-    top: 0;
-    transition: top 100ms linear, opacity 100ms linear;
-  }
-
   &__add {
     color: cornflowerblue;
     transition: opacity 100ms linear;
-    opacity: 1;
-  }
-
-  &__add-controls {
-    margin: 1em 0;
-    color: cornflowerblue;
-    transition: height 100ms linear, opacity 100ms linear;
-    height: 1em;
-    opacity: 1;
-  }
-
-  &:hover &__add-controls {
-    height: 1em;
-    opacity: 1;
-  }
-
-  &__item + &__add-controls {
-    height: 0;
-    opacity: 0;
-  }
-
-  &__add-item {
-    color: cornflowerblue;
-    margin-right: 1em;
-  }
-
-  &__item {
-    position: relative;
-  }
-
-  &__remove-item {
-    color: firebrick;
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    transition: top 100ms linear, opacity 100ms linear;
-  }
-
-  &__item:hover &__remove-item {
-    top: -1em;
     opacity: 1;
   }
 }
@@ -369,6 +310,7 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
   top: 0;
   left: 0;
   transition: opacity 100ms linear, top 100ms linear;
+  margin: 0 -6px;
 
   &--open {
     opacity: 1;
@@ -379,4 +321,18 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 .icon-button {
   border: none;
   background: none;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0 6px;
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.danger {
+  color: firebrick;
+}
+
+.primary {
+  color: cornflowerblue;
 }
