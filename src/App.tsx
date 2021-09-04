@@ -15,7 +15,7 @@ import {
   removeSection,
   updateSection,
 } from "./types/Timeline/Timeline";
-import SkillSection, { AddSkillSection } from "./components/SkillSection";
+import SkillSection, { AddSkillSection } from "./components/SidebarSection";
 import * as Sidebar from "./types/Sidebar/Sidebar";
 
 function Editor() {
