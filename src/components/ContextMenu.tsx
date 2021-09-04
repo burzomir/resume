@@ -31,18 +31,18 @@ export function useContextMenu<E extends HTMLElement>(): ContextMenuAPI<E> {
     setIsOpened(false);
   }, []);
 
-  const ref = React.useRef<HTMLElement>();
+  const ref = React.useRef<HTMLElement | null>();
 
-  const setRef = (el: HTMLElement) => {
+  const setRef = (el: HTMLElement | null) => {
     if (ref.current) {
       ref.current.removeEventListener("mouseenter", open);
       ref.current.removeEventListener("mouseleave", close);
     }
     ref.current = el;
-    if (el) {
+    if (ref.current) {
       ref.current.addEventListener("mouseenter", open);
       ref.current.addEventListener("mouseleave", close);
-      el.style.position = "relative";
+      ref.current.style.position = "relative";
     }
   };
 

@@ -17,5 +17,8 @@ export function updateSection(
 }
 
 export function removeSection(index: number, timeline: Timeline): Timeline {
-  return timeline.reduce((ss, s, i) => (i === index ? ss : [...ss, s]), []);
+  return timeline.reduce(
+    (ss, s, i) => (i === index ? ss : [...ss, s]),
+    [] as Timeline
+  );
 }

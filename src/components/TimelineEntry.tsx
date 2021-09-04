@@ -46,11 +46,11 @@ export default function TimelineEntry(props: TimelineEntryProps) {
           <small>
             <DatePicker
               date={new Date(started)}
-              onChange={(date) => onChange(setStarted(date, entry))}
+              onChange={(date) => date && onChange(setStarted(date, entry))}
             />
             -&nbsp;&nbsp;
             <DatePicker
-              date={ended && new Date(ended)}
+              date={ended ? new Date(ended) : null}
               onChange={(date) => {
                 onChange(setEnded(date, entry));
               }}
@@ -93,16 +93,11 @@ export function AddTimelineEntry(props: AddTimelineEntryProps) {
   );
 }
 
-type DatePickerProps =
-  | {
-      date: Date;
-      onChange: (date: Date) => void;
-    }
-  | {
-      date: Date | undefined;
-      onChange: (date: Date | undefined) => void;
-      optional: true;
-    };
+type DatePickerProps = {
+  date: Date | null;
+  onChange: (date: Date | null) => void;
+  optional?: boolean;
+};
 
 function DatePicker(props: DatePickerProps) {
   return (
@@ -129,7 +124,7 @@ function MonthPicker(props: DatePickerProps) {
       onChange={(e) => {
         const month = e.target.value;
         const newDate = new Date(
-          props.date.getFullYear(),
+          props.date?.getFullYear() || new Date().getFullYear(),
           months.findIndex((m) => m === month)
         );
         props.onChange(newDate);
@@ -160,9 +155,9 @@ function YearPicker(props: DatePickerProps) {
       onChange={(e) => {
         const year = parseInt(e.target.value);
         if (isNaN(year)) {
-          props.onChange(undefined);
+          props.onChange(null);
         } else {
-          const newDate = new Date(props.date);
+          const newDate = new Date(props.date || new Date());
           newDate.setFullYear(year);
           props.onChange(newDate);
         }

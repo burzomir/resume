@@ -36,7 +36,7 @@ export function removeEntry(index: number, section: Section): Section {
   const newSection = { ...section };
   newSection.entries = section.entries.reduce(
     (es, e, i) => (i === index ? es : [...es, e]),
-    []
+    [] as Entry[]
   );
   return newSection;
 }

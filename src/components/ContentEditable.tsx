@@ -9,9 +9,9 @@ export function useContentEditable<E extends HTMLElement>({
   value,
   onChange,
 }: ContentEditableProps) {
-  const ref = useRef<E>();
+  const ref = useRef<E | null>();
 
-  const setRef = (el: E) => {
+  const setRef = (el: E | null) => {
     if (el) {
       el.onblur = (e) => {
         if (e.target instanceof HTMLElement) {

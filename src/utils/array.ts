@@ -32,6 +32,6 @@ export function remove<Item>(index: number, list: Item[]): Item[] {
   return list.reduce(
     (items, currentItem, currentIndex) =>
       currentIndex === index ? items : [...items, currentItem],
-    []
+    [] as Item[]
   );
 }

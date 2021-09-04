@@ -4,7 +4,7 @@ export function upload(): Promise<File> {
     input.type = "file";
     input.multiple = false;
     input.addEventListener("change", async (e) => {
-      if (e.target instanceof HTMLInputElement) {
+      if (e.target instanceof HTMLInputElement && e.target.files) {
         const [file] = e.target.files;
         resolve(file);
       }

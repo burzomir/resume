@@ -6,7 +6,7 @@ export type Entry = {
   name: string;
   companyName: string;
   started: Date;
-  ended: Date | undefined;
+  ended: Date | null;
   content: Text[];
 };
 
@@ -14,7 +14,7 @@ export const defaultEntry: Entry = {
   name: "Entry",
   companyName: "Place",
   started: new Date(),
-  ended: undefined,
+  ended: null,
   content: [],
 };
 
@@ -36,7 +36,7 @@ export function setStarted(date: Date, entry: Entry): Entry {
   return newEntry;
 }
 
-export function setEnded(date: Date | undefined, entry: Entry): Entry {
+export function setEnded(date: Date | null, entry: Entry): Entry {
   const newEntry = { ...entry };
   newEntry.ended = date;
   return newEntry;
