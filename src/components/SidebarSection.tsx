@@ -91,11 +91,11 @@ export default function SkillSection(props: SkillSectionProps) {
   );
 }
 
-export type AddSkillSectionProps = {
+export type AddSidebarSectionProps = {
   onClick: () => void;
 };
 
-export function AddSkillSection({ onClick }: AddSkillSectionProps) {
+export function AddSidebarSection({ onClick }: AddSidebarSectionProps) {
   return (
     <div className="skill-section skill-section__add mb-3" onClick={onClick}>
       <div className="skill-section__header">

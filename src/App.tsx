@@ -15,7 +15,7 @@ import {
   removeSection,
   updateSection,
 } from "./types/Timeline/Timeline";
-import SkillSection, { AddSkillSection } from "./components/SidebarSection";
+import SidebarSection, { AddSidebarSection } from "./components/SidebarSection";
 import * as Sidebar from "./types/Sidebar/Sidebar";
 
 function Editor() {
@@ -65,7 +65,7 @@ function Editor() {
                 <Name name={data.name} onChange={setName} />
               </div>
               {data.sidebar.sections.map((section, index) => (
-                <SkillSection
+                <SidebarSection
                   key={index}
                   section={section}
                   onChange={(newSection) => {
@@ -87,7 +87,7 @@ function Editor() {
                   }}
                 />
               ))}
-              <AddSkillSection
+              <AddSidebarSection
                 onClick={() => {
                   const newSidebar = Sidebar.addSection(data.sidebar);
                   const newData = Data.setSidebar(newSidebar, data);
