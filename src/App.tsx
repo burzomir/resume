@@ -1,25 +1,22 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { AvatarEditor } from "../components/AvatarEditor";
-import { Intro } from "../components/Intro";
-import { Name } from "../components/Name";
-import Page from "../components/Page";
-import Timeline from "../components/Timeline";
+import { AvatarEditor } from "./components/AvatarEditor";
+import { Intro } from "./components/Intro";
+import { Name } from "./components/Name";
+import Page from "./components/Page";
+import Timeline from "./components/Timeline";
 import TimelineSection, {
   AddTimelineSection,
-} from "../components/TimelineSection";
-import * as Data from "../types/Data";
-import { Picture } from "../types/Picture";
+} from "./components/TimelineSection";
+import * as Data from "./types/Data";
+import { Picture } from "./types/Picture";
 import {
   addSection,
   removeSection,
   updateSection,
-} from "../types/Timeline/Timeline";
-import SkillSection, { AddSkillSection } from "../components/SkillSection";
-import * as Sidebar from "../types/Sidebar/Sidebar";
-import * as O from "../utils/object";
-import Rating from "../components/Rating2";
-import { defaultRating } from "../types/Sidebar/Rating";
+} from "./types/Timeline/Timeline";
+import SkillSection, { AddSkillSection } from "./components/SkillSection";
+import * as Sidebar from "./types/Sidebar/Sidebar";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);

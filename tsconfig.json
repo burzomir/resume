@@ -1,16 +1,13 @@
 {
   "compilerOptions": {
-      "outDir": "./dist/",
-      "sourceMap": true,
-      "noImplicitAny": true,
-      "noUnusedLocals": true,
-      "module": "commonjs",
-      "target": "es6",
-      "jsx": "react",
-      "esModuleInterop": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "esModuleInterop": true
   },
-  "include": [
-      "./src/editor/index.ts",
-      "./src/typings.d.ts"
-  ]
+  "include": ["./src/index.ts", "./src/typings.d.ts"]
 }

@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel ./src/index.html",
-    "start:editor": "parcel ./src/editor/index.html",
-    "start:tsc": "tsc --noEmit --watch",
-    "build": "cross-env NODE_ENV=production webpack"
+    "start:tsc": "tsc --noEmit --watch"
   },
   "repository": {
     "type": "git",
