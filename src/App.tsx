@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { AvatarEditor } from "./components/AvatarEditor";
+import { Avatar } from "./components/Avatar";
 import { Intro } from "./components/Intro";
 import { Name } from "./components/Name";
 import Page from "./components/Page";
@@ -57,7 +57,7 @@ function Editor() {
           <div className="d-f p-2 w-100">
             <div className="w-30 pr-2 sidebar">
               <div className="text-center mb-2">
-                <AvatarEditor
+                <Avatar
                   picture={data.avatar}
                   onPictureChange={setPicture}
                   className="w-80"
