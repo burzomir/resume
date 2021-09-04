@@ -10,7 +10,7 @@ import {
   updateItem,
 } from "../types/Sidebar/Section";
 import { useContentEditable } from "./ContentEditable";
-import Rating from "./Rating2";
+import Rating from "./Rating";
 import { Text } from "./Text";
 import { ContextMenu, useContextMenu } from "./ContextMenu";
 import { IconButton } from "./IconButton";
