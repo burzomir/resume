@@ -13,24 +13,29 @@ interface TimelineSectionProps {
   section: Section;
   onChange: (section: Section) => void;
   onRemove: () => void;
+  readonly: boolean;
 }
 
 export default function TimelineSection({
   section,
   onChange,
   onRemove,
+  readonly,
 }: TimelineSectionProps) {
   const nameRef = useContentEditable({
     value: section.name,
     onChange: (newName) => onChange(setName(newName, section)),
+    readonly,
   });
 
   return (
     <div className="timeline-section">
       <div className="timeline-section__header">
-        <div className="timeline-section--remove" onClick={onRemove}>
-          Remove section
-        </div>
+        {!readonly && (
+          <div className="timeline-section--remove" onClick={onRemove}>
+            Remove section
+          </div>
+        )}
         <h2 ref={nameRef} />
       </div>
       {section.entries.map((entry, index) => (
@@ -43,14 +48,17 @@ export default function TimelineSection({
           onRemove={() => {
             onChange(removeEntry(index, section));
           }}
+          readonly={readonly}
         />
       ))}
-      <AddTimelineEntry
-        onClick={() => {
-          const newSection = addEntry(section);
-          onChange(newSection);
-        }}
-      />
+      {!readonly && (
+        <AddTimelineEntry
+          onClick={() => {
+            const newSection = addEntry(section);
+            onChange(newSection);
+          }}
+        />
+      )}
     </div>
   );
 }

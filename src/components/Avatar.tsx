@@ -7,12 +7,14 @@ import placeholder from "../../assets/placeholder.png";
 export type Avatar = {
   picture: Picture.Picture;
   onPictureChange: (picture: Picture.Picture) => void;
+  readonly: boolean;
 };
 
 export function Avatar({
   picture,
   onPictureChange,
   className,
+  readonly,
   ...props
 }: Avatar & React.ImgHTMLAttributes<HTMLImageElement>) {
   const upload = async () => {
@@ -24,7 +26,7 @@ export function Avatar({
     <img
       {...props}
       src={picture.data || placeholder}
-      onClick={upload}
+      onClick={readonly ? undefined : upload}
       className={`avatar ${className ? className : ""}`}
     />
   );

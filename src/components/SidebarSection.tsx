@@ -19,14 +19,16 @@ interface SkillSectionProps {
   section: Section;
   onChange: (section: Section) => void;
   onRemove: () => void;
+  readonly: boolean;
 }
 
 export default function SkillSection(props: SkillSectionProps) {
-  const { section, onChange, onRemove } = props;
+  const { section, onChange, onRemove, readonly } = props;
 
   const ref = useContentEditable({
     value: section.name,
     onChange: (name) => onChange(setName(name, section)),
+    readonly,
   });
 
   const contextMenuApi = useContextMenu<HTMLDivElement>();
@@ -34,47 +36,52 @@ export default function SkillSection(props: SkillSectionProps) {
   return (
     <div className="skill-section mb-3">
       <div className="skill-section__header" ref={contextMenuApi.ref}>
-        <ContextMenu api={contextMenuApi}>
-          <IconButton
-            className="danger"
-            title="Remove section"
-            onClick={onRemove}
-            size={18}
-            Icon={Icon.X}
-          />
-          <IconButton
-            className="primary"
-            title="Add rating"
-            onClick={() => onChange(addRatingItem(section))}
-            size={18}
-            Icon={Icon.Circle}
-          />
-          <IconButton
-            className="primary"
-            title="Add text"
-            onClick={() => onChange(addTextItem(section))}
-            size={18}
-            Icon={Icon.Type}
-          />
-        </ContextMenu>
+        {!readonly && (
+          <ContextMenu api={contextMenuApi}>
+            <IconButton
+              className="danger"
+              title="Remove section"
+              onClick={onRemove}
+              size={18}
+              Icon={Icon.X}
+            />
+            <IconButton
+              className="primary"
+              title="Add rating"
+              onClick={() => onChange(addRatingItem(section))}
+              size={18}
+              Icon={Icon.Circle}
+            />
+            <IconButton
+              className="primary"
+              title="Add text"
+              onClick={() => onChange(addTextItem(section))}
+              size={18}
+              Icon={Icon.Type}
+            />
+          </ContextMenu>
+        )}
         <h2 className="mb-1" ref={ref} />
       </div>
       {section.content.map((item, index) => (
         <div key={index} className="skill-section__item">
-          <div
-            className="skill-section__remove-item"
-            onClick={() => {
-              onChange(removeItem(index, section));
-            }}
-          >
-            Remove
-          </div>
+          {!readonly && (
+            <div
+              className="skill-section__remove-item"
+              onClick={() => {
+                onChange(removeItem(index, section));
+              }}
+            >
+              Remove
+            </div>
+          )}
           {item.type === "Rating" && (
             <Rating
               rating={item.rating}
               onChange={(rating) => {
                 onChange(updateItem(index, makeRatingItem(rating), section));
               }}
+              readonly={readonly}
             />
           )}
           {item.type === "Text" && (
@@ -83,6 +90,7 @@ export default function SkillSection(props: SkillSectionProps) {
               onChange={(newText) =>
                 onChange(updateItem(index, makeTextItem(newText), section))
               }
+              readonly={readonly}
             />
           )}
         </div>

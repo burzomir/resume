@@ -17,36 +17,43 @@ interface TimelineEntryProps {
   entry: Entry;
   onChange: (entry: Entry) => void;
   onRemove: () => void;
+  readonly: boolean;
 }
 
 export default function TimelineEntry(props: TimelineEntryProps) {
-  const { entry, onChange, onRemove } = props;
+  const { entry, onChange, onRemove, readonly } = props;
 
   const { name, companyName, started, ended } = entry;
 
   const nameRef = useContentEditable({
     value: name,
     onChange: (newName) => onChange(setName(newName, entry)),
+    readonly,
   });
 
   const companyNameRef = useContentEditable({
     value: companyName,
     onChange: (newCompanyName) =>
       onChange(setCompanyName(newCompanyName, entry)),
+    readonly,
   });
 
   return (
     <div className="timeline-entry">
       <h4>
-        <div className="timeline-entry--remove" onClick={onRemove}>
-          Remove entry
-        </div>
+        {!readonly && (
+          <div className="timeline-entry--remove" onClick={onRemove}>
+            Remove entry
+          </div>
+        )}
         <div className="d-f jc-sb">
           <span ref={nameRef} />
           <small>
             <DatePicker
               date={new Date(started)}
               onChange={(date) => date && onChange(setStarted(date, entry))}
+              optional={false}
+              readonly={readonly}
             />
             -&nbsp;&nbsp;
             <DatePicker
@@ -54,7 +61,8 @@ export default function TimelineEntry(props: TimelineEntryProps) {
               onChange={(date) => {
                 onChange(setEnded(date, entry));
               }}
-              optional
+              optional={true}
+              readonly={readonly}
             />
           </small>
         </div>
@@ -67,16 +75,19 @@ export default function TimelineEntry(props: TimelineEntryProps) {
           onChange={(newText) => {
             onChange(updateText(index, newText, entry));
           }}
+          readonly={readonly}
         />
       ))}
-      <div
-        className="timeline-entry__add-text"
-        onClick={() => {
-          onChange(addText(entry));
-        }}
-      >
-        Add text
-      </div>
+      {!readonly && (
+        <div
+          className="timeline-entry__add-text"
+          onClick={() => {
+            onChange(addText(entry));
+          }}
+        >
+          Add text
+        </div>
+      )}
     </div>
   );
 }
@@ -96,7 +107,8 @@ export function AddTimelineEntry(props: AddTimelineEntryProps) {
 type DatePickerProps = {
   date: Date | null;
   onChange: (date: Date | null) => void;
-  optional?: boolean;
+  optional: boolean;
+  readonly: boolean;
 };
 
 function DatePicker(props: DatePickerProps) {
@@ -131,6 +143,7 @@ function MonthPicker(props: DatePickerProps) {
       }}
       value={selectedMonth}
       style={{ width: calculateSize(selectedMonth).width }}
+      disabled={props.readonly}
     >
       {months.map((month) => (
         <option key={month} value={month}>
@@ -166,6 +179,7 @@ function YearPicker(props: DatePickerProps) {
         width: calculateSize(selectedYear ? selectedYear.toString() : "Present")
           .width,
       }}
+      disabled={props.readonly}
     >
       {optional && <option value="">Present</option>}
       {years.map((year) => (

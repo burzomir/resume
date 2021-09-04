@@ -4,6 +4,7 @@ import { useContentEditable } from "./ContentEditable";
 export type IntroProps = {
   value: string;
   onChange: (text: string) => void;
+  readonly: boolean;
 };
 
 export function Intro(props: IntroProps) {

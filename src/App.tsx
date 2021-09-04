@@ -20,6 +20,7 @@ import * as Sidebar from "./types/Sidebar/Sidebar";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
+  const [readonly, setReadonly] = React.useState(false);
 
   const upload = async () => {
     const res = await Data.upload();
@@ -51,6 +52,7 @@ function Editor() {
         <button onClick={upload}>Upload</button>
         <button onClick={download}>Download</button>
         <button onClick={print}>Print</button>
+        <button onClick={() => setReadonly(!readonly)}>Toggle editor</button>
       </div>
       <div className="app">
         <Page format="a4" className="d-f">
@@ -61,13 +63,15 @@ function Editor() {
                   picture={data.avatar}
                   onPictureChange={setPicture}
                   className="w-80"
+                  readonly={readonly}
                 />
-                <Name name={data.name} onChange={setName} />
+                <Name name={data.name} onChange={setName} readonly={readonly} />
               </div>
               {data.sidebar.sections.map((section, index) => (
                 <SidebarSection
                   key={index}
                   section={section}
+                  readonly={readonly}
                   onChange={(newSection) => {
                     const newSidebar = Sidebar.updateSection(
                       index,
@@ -87,21 +91,28 @@ function Editor() {
                   }}
                 />
               ))}
-              <AddSidebarSection
-                onClick={() => {
-                  const newSidebar = Sidebar.addSection(data.sidebar);
-                  const newData = Data.setSidebar(newSidebar, data);
-                  setData(newData);
-                }}
-              />
+              {!readonly && (
+                <AddSidebarSection
+                  onClick={() => {
+                    const newSidebar = Sidebar.addSection(data.sidebar);
+                    const newData = Data.setSidebar(newSidebar, data);
+                    setData(newData);
+                  }}
+                />
+              )}
             </div>
             <div className="w-70 d-f">
               <Timeline className="w-100">
-                <Intro value={data.intro} onChange={setIntro} />
+                <Intro
+                  value={data.intro}
+                  onChange={setIntro}
+                  readonly={readonly}
+                />
                 {data.timeline.map((section, index) => (
                   <TimelineSection
                     key={index}
                     section={section}
+                    readonly={readonly}
                     onChange={(newSection) => {
                       const newTimeline = updateSection(
                         index,
@@ -118,13 +129,15 @@ function Editor() {
                     }}
                   />
                 ))}
-                <AddTimelineSection
-                  onClick={() => {
-                    const newTimeline = addSection(data.timeline);
-                    const newData = Data.setTimeline(newTimeline, data);
-                    setData(newData);
-                  }}
-                />
+                {!readonly && (
+                  <AddTimelineSection
+                    onClick={() => {
+                      const newTimeline = addSection(data.timeline);
+                      const newData = Data.setTimeline(newTimeline, data);
+                      setData(newData);
+                    }}
+                  />
+                )}
               </Timeline>
             </div>
           </div>

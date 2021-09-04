@@ -7,34 +7,41 @@ import { useContentEditable } from "./ContentEditable";
 interface RatingProps {
   rating: R.Rating;
   onChange: (rating: R.Rating) => void;
+  readonly: boolean;
 }
 
-export default function Rating({ rating, onChange }: RatingProps) {
+export default function Rating({ rating, onChange, readonly }: RatingProps) {
   const nameRef = useContentEditable({
     value: rating.name,
     onChange: (newName) => {
       onChange(R.setName(newName, rating));
     },
+    readonly,
   });
+
   const labelRef = useContentEditable({
     value: rating.label,
     onChange: (newName) => {
       onChange(R.setLabel(newName, rating));
     },
+    readonly,
   });
+
   return (
     <div className="skill-rating">
       <span className="skill-rating__name" ref={nameRef} />
       <div className="d-f">
         <div className="rating">
-          <span
-            className="rating__item--remove"
-            onClick={() => {
-              onChange(R.decreaseScale(rating));
-            }}
-          >
-            <Icon icon="minus" />
-          </span>
+          {!readonly && (
+            <span
+              className="rating__item--remove"
+              onClick={() => {
+                onChange(R.decreaseScale(rating));
+              }}
+            >
+              <Icon icon="minus" />
+            </span>
+          )}
           {createRange(0, rating.level).map((n) => (
             <span
               className="rating__item"
@@ -57,14 +64,16 @@ export default function Rating({ rating, onChange }: RatingProps) {
               <Icon icon="circle" />
             </span>
           ))}
-          <span
-            className="rating__item--add"
-            onClick={() => {
-              onChange(R.increaseScale(rating));
-            }}
-          >
-            <Icon icon="plus" />
-          </span>
+          {!readonly && (
+            <span
+              className="rating__item--add"
+              onClick={() => {
+                onChange(R.increaseScale(rating));
+              }}
+            >
+              <Icon icon="plus" />
+            </span>
+          )}
         </div>
         <i className="ml-1" ref={labelRef}></i>
       </div>
