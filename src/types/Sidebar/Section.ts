@@ -24,9 +24,7 @@ export const defaultSection: Section = {
 };
 
 export function setName(name: string, section: Section): Section {
-  const newSection = { ...section };
-  newSection.name = name;
-  return newSection;
+  return O.set("name", name, section);
 }
 
 export function addRatingItem(section: Section): Section {

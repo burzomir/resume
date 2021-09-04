@@ -1,4 +1,6 @@
 import { defaultEntry, Entry } from "./Entry";
+import * as O from "../../utils/object";
+import * as A from "../../utils/array";
 
 export type Section = {
   name: string;
@@ -11,15 +13,12 @@ export const defaultSection: Section = {
 };
 
 export function setName(name: string, section: Section): Section {
-  const newSection = { ...section };
-  newSection.name = name;
-  return newSection;
+  return O.set("name", name, section);
 }
 
 export function addEntry(section: Section): Section {
-  const newSection = { ...section };
-  newSection.entries = [...section.entries, defaultEntry];
-  return newSection;
+  const entries = A.add(defaultEntry, section.entries);
+  return O.set("entries", entries, section);
 }
 
 export function updateEntry(
@@ -27,16 +26,11 @@ export function updateEntry(
   entry: Entry,
   section: Section
 ): Section {
-  const newSection = { ...section };
-  newSection.entries = section.entries.map((e, i) => (i === index ? entry : e));
-  return newSection;
+  const entries = A.update(index, entry, section.entries);
+  return O.set("entries", entries, section);
 }
 
 export function removeEntry(index: number, section: Section): Section {
-  const newSection = { ...section };
-  newSection.entries = section.entries.reduce(
-    (es, e, i) => (i === index ? es : [...es, e]),
-    [] as Entry[]
-  );
-  return newSection;
+  const entries = A.remove(index, section.entries);
+  return O.set("entries", entries, section);
 }

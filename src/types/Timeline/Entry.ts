@@ -19,27 +19,19 @@ export const defaultEntry: Entry = {
 };
 
 export function setName(name: string, entry: Entry): Entry {
-  const newEntry = { ...entry };
-  newEntry.name = name;
-  return newEntry;
+  return O.set("name", name, entry);
 }
 
 export function setCompanyName(name: string, entry: Entry): Entry {
-  const newEntry = { ...entry };
-  newEntry.companyName = name;
-  return newEntry;
+  return O.set("companyName", name, entry);
 }
 
 export function setStarted(date: Date, entry: Entry): Entry {
-  const newEntry = { ...entry };
-  newEntry.started = date;
-  return newEntry;
+  return O.set("started", date, entry);
 }
 
 export function setEnded(date: Date | null, entry: Entry): Entry {
-  const newEntry = { ...entry };
-  newEntry.ended = date;
-  return newEntry;
+  return O.set("ended", date, entry);
 }
 
 export function addText(entry: Entry): Entry {

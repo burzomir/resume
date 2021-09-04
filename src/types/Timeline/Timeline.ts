@@ -1,9 +1,10 @@
 import { defaultSection, Section } from "./Section";
+import * as A from "../../utils/array";
 
 export type Timeline = Section[];
 
 export function addSection(timeline: Timeline): Timeline {
-  return [...timeline, defaultSection];
+  return A.add(defaultSection, timeline);
 }
 
 export const defaultTimeline: Timeline = [];
@@ -13,12 +14,9 @@ export function updateSection(
   section: Section,
   timeline: Timeline
 ): Timeline {
-  return timeline.map((s, i) => (i === index ? section : s));
+  return A.update(index, section, timeline);
 }
 
 export function removeSection(index: number, timeline: Timeline): Timeline {
-  return timeline.reduce(
-    (ss, s, i) => (i === index ? ss : [...ss, s]),
-    [] as Timeline
-  );
+  return A.remove(index, timeline);
 }

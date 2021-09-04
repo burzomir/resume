@@ -23,27 +23,19 @@ export const defaultData: Data = {
 };
 
 export function setAvatar(picture: Picture, data: Data): Data {
-  const newData = { ...data };
-  newData["avatar"] = picture;
-  return newData;
+  return O.set("avatar", picture, data);
 }
 
 export function setName(name: string, data: Data): Data {
-  const newData = { ...data };
-  newData["name"] = name;
-  return newData;
+  return O.set("name", name, data);
 }
 
 export function setIntro(intro: string, data: Data): Data {
-  const newData = { ...data };
-  newData["intro"] = intro;
-  return newData;
+  return O.set("intro", intro, data);
 }
 
 export function setTimeline(timeline: Timeline, data: Data): Data {
-  const newData = { ...data };
-  newData.timeline = timeline;
-  return newData;
+  return O.set("timeline", timeline, data);
 }
 
 export function setSidebar(sidebar: Sidebar, data: Data): Data {
