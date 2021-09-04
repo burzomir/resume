@@ -47,7 +47,7 @@ export default function Rating({ rating, onChange, readonly }: RatingProps) {
               className="rating__item"
               key={n}
               onClick={() => {
-                onChange(R.setLevel(n + 1, rating));
+                !readonly && onChange(R.setLevel(n + 1, rating));
               }}
             >
               <Icon icon="circle-fill" />
@@ -58,7 +58,7 @@ export default function Rating({ rating, onChange, readonly }: RatingProps) {
               className="rating__item"
               key={n}
               onClick={() => {
-                onChange(R.setLevel(n + 1, rating));
+                !readonly && onChange(R.setLevel(n + 1, rating));
               }}
             >
               <Icon icon="circle" />
