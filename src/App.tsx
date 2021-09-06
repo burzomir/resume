@@ -22,6 +22,12 @@ function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
   const [readonly, setReadonly] = React.useState(true);
 
+  React.useEffect(() => {
+    fetch("resume.json")
+      .then((res) => res.json())
+      .then((res) => setData(res));
+  }, []);
+
   const upload = async () => {
     const res = await Data.upload();
     setData(res);
