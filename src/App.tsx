@@ -20,7 +20,7 @@ import * as Sidebar from "./types/Sidebar/Sidebar";
 
 function Editor() {
   const [data, setData] = React.useState(Data.defaultData);
-  const [readonly, setReadonly] = React.useState(false);
+  const [readonly, setReadonly] = React.useState(true);
 
   const upload = async () => {
     const res = await Data.upload();
@@ -52,7 +52,9 @@ function Editor() {
         <button onClick={upload}>Upload</button>
         <button onClick={download}>Download</button>
         <button onClick={print}>Print</button>
-        <button onClick={() => setReadonly(!readonly)}>Toggle editor</button>
+        <button onClick={() => setReadonly(!readonly)}>
+          {readonly ? "Start editing" : "Stop editing"}
+        </button>
       </div>
       <div className="app">
         <Page format="a4" className="d-f">
