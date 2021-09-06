@@ -8,7 +8,7 @@ export type Section = {
   content: Item[];
 };
 
-type Item =
+export type Item =
   | {
       type: "Rating";
       rating: Rating;

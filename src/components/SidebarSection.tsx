@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   addRatingItem,
   addTextItem,
+  Item,
   makeRatingItem,
   makeTextItem,
   removeItem,
@@ -64,36 +65,13 @@ export default function SkillSection(props: SkillSectionProps) {
         <h2 className="mb-1" ref={ref} />
       </div>
       {section.content.map((item, index) => (
-        <div key={index} className="skill-section__item">
-          {!readonly && (
-            <div
-              className="skill-section__remove-item"
-              onClick={() => {
-                onChange(removeItem(index, section));
-              }}
-            >
-              Remove
-            </div>
-          )}
-          {item.type === "Rating" && (
-            <Rating
-              rating={item.rating}
-              onChange={(rating) => {
-                onChange(updateItem(index, makeRatingItem(rating), section));
-              }}
-              readonly={readonly}
-            />
-          )}
-          {item.type === "Text" && (
-            <Text
-              text={item.text}
-              onChange={(newText) =>
-                onChange(updateItem(index, makeTextItem(newText), section))
-              }
-              readonly={readonly}
-            />
-          )}
-        </div>
+        <SectionItem
+          key={index}
+          item={item}
+          onChange={(newItem) => onChange(updateItem(index, newItem, section))}
+          onRemove={() => onChange(removeItem(index, section))}
+          readonly={readonly}
+        />
       ))}
     </div>
   );
@@ -109,6 +87,41 @@ export function AddSidebarSection({ onClick }: AddSidebarSectionProps) {
       <div className="skill-section__header">
         <h2 className="mb-1">Add new section</h2>
       </div>
+    </div>
+  );
+}
+
+type SectionItemProps = {
+  readonly: boolean;
+  onRemove: () => void;
+  onChange: (item: Item) => void;
+  item: Item;
+};
+
+function SectionItem({ readonly, onRemove, onChange, item }: SectionItemProps) {
+  return (
+    <div className="skill-section__item">
+      {!readonly && (
+        <div className="skill-section__remove-item" onClick={onRemove}>
+          Remove
+        </div>
+      )}
+      {item.type === "Rating" && (
+        <Rating
+          rating={item.rating}
+          onChange={(rating) => {
+            onChange(makeRatingItem(rating));
+          }}
+          readonly={readonly}
+        />
+      )}
+      {item.type === "Text" && (
+        <Text
+          text={item.text}
+          onChange={(newText) => onChange(makeTextItem(newText))}
+          readonly={readonly}
+        />
+      )}
     </div>
   );
 }
