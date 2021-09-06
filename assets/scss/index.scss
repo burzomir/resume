@@ -281,6 +281,22 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
   }
 }
 
+.edit-controls {
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  background: cornflowerblue;
+}
+
+.edit-controls button {
+  border: none;
+  background: none;
+  color: white;
+  font-weight: bold;
+}
+
 @media print {
   html {
     font-size: 14px;
