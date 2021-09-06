@@ -99,12 +99,20 @@ type SectionItemProps = {
 };
 
 function SectionItem({ readonly, onRemove, onChange, item }: SectionItemProps) {
+  const contextMenuApi = useContextMenu<HTMLDivElement>();
+
   return (
-    <div className="skill-section__item">
+    <div className="skill-section__item" ref={contextMenuApi.ref}>
       {!readonly && (
-        <div className="skill-section__remove-item" onClick={onRemove}>
-          Remove
-        </div>
+        <ContextMenu api={contextMenuApi}>
+          <IconButton
+            className="danger"
+            title="Remove section"
+            onClick={onRemove}
+            size={18}
+            Icon={Icon.X}
+          />
+        </ContextMenu>
       )}
       {item.type === "Rating" && (
         <Rating
