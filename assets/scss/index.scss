@@ -308,7 +308,8 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 }
 
 .datepicker {
-  select, select:disabled {
+  select,
+  select:disabled {
     appearance: none;
     border: none;
     font-weight: bold;
@@ -329,7 +330,9 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
   left: 0;
   transition: opacity 100ms linear, top 100ms linear;
   margin: 0 -6px;
-
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5em;
+  padding: 0.5em;
   &--open {
     opacity: 1;
     top: -1.5em;
