@@ -48,14 +48,6 @@ function Editor() {
 
   return (
     <>
-      <div className="edit-controls">
-        <button onClick={upload}>Upload</button>
-        <button onClick={download}>Download</button>
-        <button onClick={print}>Print</button>
-        <button onClick={() => setReadonly(!readonly)}>
-          {readonly ? "Start editing" : "Stop editing"}
-        </button>
-      </div>
       <div className="app">
         <Page format="a4" className="d-f">
           <div className="d-f p-2 w-100">
@@ -144,6 +136,14 @@ function Editor() {
             </div>
           </div>
         </Page>
+      </div>
+      <div className="edit-controls">
+        <button onClick={upload}>Upload</button>
+        <button onClick={download}>Download</button>
+        <button onClick={print}>Print</button>
+        <button onClick={() => setReadonly(!readonly)}>
+          {readonly ? "Start editing" : "Stop editing"}
+        </button>
       </div>
     </>
   );
