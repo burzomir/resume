@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type ContentEditableProps = {
   value: string;
@@ -11,34 +11,25 @@ export function useContentEditable<E extends HTMLElement>({
   onChange,
   readonly,
 }: ContentEditableProps) {
-  const ref = useRef<E | null>();
-
-  const setRef = (el: E | null) => {
-    if (ref.current) {
-      ref.current.contentEditable = 'false';
-    }
-    if (el) {
-      el.onblur = (e) => {
-        if (e.target instanceof HTMLElement) {
-          onChange(e.target.innerText);
-        }
-      };
-      el.contentEditable = "true";
-    }
-    ref.current = el;
-  };
+  const [element, setElement] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.innerText = value;
+    if (element) {
+      element.contentEditable = readonly ? "false" : "true";
     }
-  }, [value]);
+  }, [element, readonly]);
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.contentEditable = readonly ? "false" : "true";
+    if (element) {
+      element.innerText = value;
     }
-  }, [readonly]);
+  }, [element, value]);
 
-  return readonly ? undefined : setRef;
+  useEffect(() => {
+    if (element) {
+      element.onblur = () => onChange(element.innerText);
+    }
+  }, [element, onChange]);
+
+  return setElement;
 }
