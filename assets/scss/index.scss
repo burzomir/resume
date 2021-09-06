@@ -308,11 +308,13 @@ $directions: ((top, t), (right, r), (bottom, b), (left, l));
 }
 
 .datepicker {
-  select {
+  select, select:disabled {
     appearance: none;
     border: none;
     font-weight: bold;
     font-size: 12px;
+    color: $color-text;
+    opacity: 1;
   }
 }
 
