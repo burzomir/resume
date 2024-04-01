@@ -25,7 +25,8 @@ function Editor() {
   React.useEffect(() => {
     fetch("resume.json")
       .then((res) => res.json())
-      .then((res) => setData(res));
+      .then((res) => setData(res))
+      .catch(() => setData(Data.defaultData))
   }, []);
 
   const upload = async () => {
